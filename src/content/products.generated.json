@@ -1,0 +1,26 @@
+[
+  {
+    "productId": "sample-1",
+    "slug": "jpii-crewneck",
+    "name": "◆ JPII Crewneck (sample — run npm run sync:printful)",
+    "description": "Placeholder product. Run `npm run sync:printful` with a real PRINTFUL_API_KEY set to replace this file with the actual store catalog.",
+    "images": [],
+    "variants": [
+      { "variantId": "sample-1-s", "name": "Navy / Small", "price": 4000, "inStock": true },
+      { "variantId": "sample-1-m", "name": "Navy / Medium", "price": 4000, "inStock": true },
+      { "variantId": "sample-1-l", "name": "Navy / Large", "price": 4000, "inStock": true }
+    ]
+  },
+  {
+    "productId": "sample-2",
+    "slug": "jpii-tee",
+    "name": "◆ JPII Varsity Tee (sample — run npm run sync:printful)",
+    "description": "Placeholder product. Run `npm run sync:printful` with a real PRINTFUL_API_KEY set to replace this file with the actual store catalog.",
+    "images": [],
+    "variants": [
+      { "variantId": "sample-2-s", "name": "Ivory / Small", "price": 2500, "inStock": true },
+      { "variantId": "sample-2-m", "name": "Ivory / Medium", "price": 2500, "inStock": true },
+      { "variantId": "sample-2-l", "name": "Ivory / Large", "price": 2500, "inStock": true }
+    ]
+  }
+]
