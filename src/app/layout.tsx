@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cinzel, Archivo, Cormorant_Garamond } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import { RegisterServiceWorker } from "@/components/pwa/RegisterServiceWorker";
+import { InstallPrompt } from "@/components/pwa/InstallPrompt";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -48,6 +49,7 @@ export default function RootLayout({
         <MotionConfig reducedMotion="user">
           {children}
           <RegisterServiceWorker />
+          <InstallPrompt />
         </MotionConfig>
       </body>
     </html>
