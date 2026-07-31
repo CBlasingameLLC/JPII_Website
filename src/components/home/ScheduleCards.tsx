@@ -3,6 +3,14 @@ import { StaggerGrid, StaggerItem } from "@/components/ui/StaggerGrid";
 import type { ScheduleItem } from "@/types/schedule";
 
 export function ScheduleCards({ items }: { items: ScheduleItem[] }) {
+  if (items.length === 0) {
+    return (
+      <div className="mt-9 rounded-inner border border-dashed border-border p-[26px_28px] text-center text-sm text-muted">
+        No regular programming today — check Events for anything special this week.
+      </div>
+    );
+  }
+
   return (
     <StaggerGrid className="mt-9 grid grid-cols-1 gap-5 sm:grid-cols-2">
       {items.map((item) => (

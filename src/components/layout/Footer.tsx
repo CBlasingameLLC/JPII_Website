@@ -32,10 +32,30 @@ export function Footer() {
             <div className="font-ui text-[10px] font-semibold uppercase tracking-[.2em] text-gold-light">
               Contact
             </div>
-            <div className="mt-4 text-sm leading-[1.85] text-onnavy">
-              <div>{SITE_CONFIG.email}</div>
-              <div>{SITE_CONFIG.phone}</div>
-              <div>{SITE_CONFIG.instagram}</div>
+            <div className="mt-4 flex flex-col gap-1 text-sm leading-[1.85] text-onnavy">
+              <a href={`mailto:${SITE_CONFIG.email}`} className="transition-colors hover:text-gold-light">
+                {SITE_CONFIG.email}
+              </a>
+              <a href={`tel:${SITE_CONFIG.phone.replace(/[^\d+]/g, "")}`} className="transition-colors hover:text-gold-light">
+                {SITE_CONFIG.phone}
+              </a>
+              <a
+                href={SITE_CONFIG.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-gold-light"
+              >
+                {SITE_CONFIG.instagram}
+              </a>
+              {/* Facebook is confirmed inactive — listed, not emphasized. */}
+              <a
+                href={SITE_CONFIG.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-onnavy-dim transition-colors hover:text-gold-light"
+              >
+                Facebook
+              </a>
             </div>
           </div>
 
@@ -61,9 +81,14 @@ export function Footer() {
             <Link href="/#give" className="text-onnavy-dim transition-colors hover:text-gold-light">
               Give
             </Link>
-            <Link href="/#about" className="text-onnavy-dim transition-colors hover:text-gold-light">
+            <a
+              href={SITE_CONFIG.dioceseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-onnavy-dim transition-colors hover:text-gold-light"
+            >
               {SITE_CONFIG.diocese}
-            </Link>
+            </a>
             <Link href="/#top" className="text-onnavy-dim transition-colors hover:text-gold-light">
               Back to top
             </Link>

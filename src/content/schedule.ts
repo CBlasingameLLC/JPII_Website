@@ -1,10 +1,11 @@
 import type { ScheduleDay } from "@/types/schedule";
 
 /**
- * Ports the schedule from Website Draft.dc.html verbatim (lines 395-417).
- * Times marked ◆ are guesses per the design handoff and need real answers
- * from the ministry. 'sat' is intentionally omitted — no entries — so the
- * day-tab default-day logic falls back to Sunday on Saturdays.
+ * Real weekly schedule from the ministry (school year). 'sat' is
+ * intentionally omitted — no entries — so the day-tab default-day logic
+ * falls back to Sunday on Saturdays. 'mon' has no regular programming and
+ * is kept as an explicit empty day (see ScheduleCards' empty state) rather
+ * than removed, so visitors browsing the week don't wonder if it's a bug.
  */
 export const SCHEDULE: ScheduleDay[] = [
   {
@@ -12,41 +13,35 @@ export const SCHEDULE: ScheduleDay[] = [
     label: "Sun",
     items: [
       {
-        title: "Student Mass",
-        time: "11:00 AM ◆",
-        note: "The main Sunday liturgy for students, with student lectors and music.",
+        title: "Morning Mass",
+        time: "10:30 AM",
+        note: "The main Sunday liturgy for students, with student lectors and music. Brunch social right after.",
       },
       {
-        title: "Free Lunch",
-        time: "After Mass",
-        note: "Everyone eats. Bring a friend, bring a roommate, bring nobody.",
+        title: "Evening Mass",
+        time: "7:00 PM",
+        note: "Same Mass, different crowd — a lot of students' favorite. Dinner social right after.",
       },
     ],
   },
   {
     key: "mon",
     label: "Mon",
-    items: [
-      {
-        title: "Adoration & Confession",
-        time: "6:00 PM – 7:00 PM ◆",
-        note: "Quiet hour before the Blessed Sacrament. A priest is available the whole time.",
-      },
-    ],
+    items: [],
   },
   {
     key: "tue",
     label: "Tue",
     items: [
       {
-        title: "Daily Mass",
-        time: "12:15 PM ◆",
-        note: "Twenty-five minutes between classes.",
+        title: "Confession",
+        time: "4:45 – 5:15 PM",
+        note: "A priest is available the whole time. No appointment needed.",
       },
       {
-        title: "Bible Study",
-        time: "7:00 PM ◆",
-        note: "Working through one gospel a semester. No prep required.",
+        title: "Daily Mass",
+        time: "5:30 – 6:00 PM",
+        note: "Half an hour, easy to get to between classes.",
       },
     ],
   },
@@ -55,14 +50,24 @@ export const SCHEDULE: ScheduleDay[] = [
     label: "Wed",
     items: [
       {
-        title: "Daily Mass",
-        time: "12:15 PM ◆",
-        note: "Twenty-five minutes between classes.",
+        title: "Confession",
+        time: "4:45 – 5:15 PM",
+        note: "A priest is available the whole time. No appointment needed.",
       },
       {
-        title: "Community Night",
-        time: "7:00 PM ◆",
-        note: "Dinner, a talk, small groups. The night to bring someone new.",
+        title: "Daily Mass",
+        time: "5:30 – 6:00 PM",
+        note: "Half an hour, easy to get to between classes.",
+      },
+      {
+        title: "Men's Bible Study",
+        time: "7:00 – 8:00 PM",
+        note: "Scripture and honest conversation, guys only.",
+      },
+      {
+        title: "Women's Bible Study",
+        time: "7:00 – 8:00 PM",
+        note: "Scripture and honest conversation, women only.",
       },
     ],
   },
@@ -71,9 +76,24 @@ export const SCHEDULE: ScheduleDay[] = [
     label: "Thu",
     items: [
       {
-        title: "Praise & Worship",
-        time: "8:00 PM ◆",
-        note: "Music, adoration, and confession available throughout.",
+        title: "Holy Bean Coffee Hour",
+        time: "1:00 – 3:00 PM",
+        note: "Free coffee at the Center. Come do homework, come do nothing.",
+      },
+      {
+        title: "Confession",
+        time: "4:45 – 5:15 PM",
+        note: "A priest is available the whole time. No appointment needed.",
+      },
+      {
+        title: "Daily Mass",
+        time: "5:30 – 6:00 PM",
+        note: "Half an hour, easy to get to between classes.",
+      },
+      {
+        title: "Adoration",
+        time: "After Mass, until around 10:00 PM",
+        note: "Quiet time before the Blessed Sacrament — drop in for five minutes or stay the whole time. Exact end time varies by week.",
       },
     ],
   },
@@ -82,9 +102,14 @@ export const SCHEDULE: ScheduleDay[] = [
     label: "Fri",
     items: [
       {
+        title: "Confession",
+        time: "4:45 – 5:15 PM",
+        note: "A priest is available the whole time. No appointment needed.",
+      },
+      {
         title: "Daily Mass",
-        time: "12:15 PM ◆",
-        note: "Followed by coffee for anyone who lingers.",
+        time: "5:30 – 6:00 PM",
+        note: "Half an hour, easy to get to between classes.",
       },
     ],
   },

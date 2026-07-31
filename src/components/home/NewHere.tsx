@@ -1,5 +1,3 @@
-import { formatMassTime } from "@/lib/time";
-import { SUNDAY_MASS_TIME } from "@/content/site-config";
 import { StaggerGrid, StaggerItem } from "@/components/ui/StaggerGrid";
 import { NewHereFlow } from "@/components/home/NewHereFlow";
 
@@ -9,8 +7,8 @@ const STEPS = [
     title: "Just walk in",
     body: (
       <>
-        Sunday at <b>{formatMassTime(SUNDAY_MASS_TIME)} ◆</b> is the easiest entry point. Sit
-        in the back if you want. Wear whatever.
+        Sunday at <b>10:30 AM</b> is the easiest entry point. Sit in the back if you want. Wear
+        whatever.
       </>
     ),
   },

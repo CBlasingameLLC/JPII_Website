@@ -3,49 +3,60 @@ import { SITE_CONFIG } from "@/content/site-config";
 
 type LogoVariant = "header-dark" | "header-light" | "footer";
 
-const VARIANT_STYLES: Record<
-  LogoVariant,
+/**
+ * Header variants use the Brand Board's "Sacred Cut" treatment (4b): Cinzel
+ * instead of Archivo, gold instead of orange, full "St. John Paul II" name
+ * instead of the abbreviated "JPII" mark — a deliberate departure from the
+ * board's own "best for: site header" note on the orange Campus Cut (4a),
+ * per direct request. The abbreviated JP/II mark is kept for the footer
+ * (unchanged) and as the header's own small-mobile fallback, since "St. John
+ * Paul II" spelled out at a legible size doesn't reliably fit next to the
+ * hamburger button below the `sm` breakpoint.
+ */
+const HEADER_STYLES: Record<
+  "header-dark" | "header-light",
   {
     crossColor: string;
-    jpColor: string;
-    iiColor: string;
+    nameColor: string;
+    accentColor: string;
     ministryColor: string;
     crossWidth: number;
     crossHeight: number;
-    wordmarkPx: string;
+    namePx: string;
     ministryPx: string;
   }
 > = {
   "header-dark": {
-    crossColor: "#E06F1D",
-    jpColor: "#F6F1E6",
-    iiColor: "#E06F1D",
+    crossColor: "#E7C877",
+    nameColor: "#F6F1E6",
+    accentColor: "#E7C877",
     ministryColor: "#9FB0CC",
-    crossWidth: 33,
-    crossHeight: 47,
-    wordmarkPx: "33px",
+    crossWidth: 26,
+    crossHeight: 37,
+    namePx: "20px",
     ministryPx: "8px",
   },
   "header-light": {
-    crossColor: "#E06F1D",
-    jpColor: "#003876",
-    iiColor: "#E06F1D",
+    crossColor: "#C8A24B",
+    nameColor: "#003876",
+    accentColor: "#C8A24B",
     ministryColor: "#6B7A94",
-    crossWidth: 33,
-    crossHeight: 47,
-    wordmarkPx: "33px",
+    crossWidth: 26,
+    crossHeight: 37,
+    namePx: "20px",
     ministryPx: "8px",
   },
-  footer: {
-    crossColor: "#E7C877",
-    jpColor: "#F6F1E6",
-    iiColor: "#E7C877",
-    ministryColor: "#9FB0CC",
-    crossWidth: 30,
-    crossHeight: 43,
-    wordmarkPx: "30px",
-    ministryPx: "7.5px",
-  },
+};
+
+const FOOTER_STYLE = {
+  crossColor: "#E7C877",
+  jpColor: "#F6F1E6",
+  iiColor: "#E7C877",
+  ministryColor: "#9FB0CC",
+  crossWidth: 30,
+  crossHeight: 43,
+  wordmarkPx: "30px",
+  ministryPx: "7.5px",
 };
 
 type LogoProps = {
@@ -60,24 +71,55 @@ type LogoProps = {
  * of an SVG with embedded text.
  */
 export function Logo({ variant, className }: LogoProps) {
-  const s = VARIANT_STYLES[variant];
-  const isHeader = variant !== "footer";
+  if (variant === "footer") {
+    const s = FOOTER_STYLE;
+    return (
+      <span className={`flex items-center gap-4 ${className ?? ""}`}>
+        <Cross width={s.crossWidth} height={s.crossHeight} color={s.crossColor} />
+        <span>
+          <span
+            className="flex items-baseline font-ui font-bold leading-[0.86] tracking-[-.01em]"
+            style={{ fontSize: s.wordmarkPx }}
+          >
+            <span style={{ color: s.jpColor }}>JP</span>
+            <span style={{ color: s.iiColor, marginLeft: "2px" }}>II</span>
+          </span>
+          <span
+            className="mt-[5px] block font-ui font-semibold tracking-[.2em]"
+            style={{ fontSize: s.ministryPx, color: s.ministryColor }}
+          >
+            CATHOLIC CAMPUS MINISTRY
+          </span>
+        </span>
+        <span className="sr-only">{SITE_CONFIG.siteName}</span>
+      </span>
+    );
+  }
+
+  const s = HEADER_STYLES[variant];
 
   return (
-    <span className={`flex items-center gap-4 ${className ?? ""}`}>
+    <span className={`flex items-center gap-3 ${className ?? ""}`}>
       <Cross width={s.crossWidth} height={s.crossHeight} color={s.crossColor} />
       <span>
+        {/* Small mobile (<sm): abbreviated mark, guaranteed to fit next to the hamburger button. */}
         <span
-          className="flex items-baseline font-ui font-bold leading-[0.86] tracking-[-.01em]"
-          style={{ fontSize: s.wordmarkPx }}
+          className="flex items-baseline font-ui font-bold leading-[0.86] tracking-[-.01em] sm:hidden"
+          style={{ fontSize: "26px" }}
         >
-          <span style={{ color: s.jpColor }}>JP</span>
-          <span style={{ color: s.iiColor, marginLeft: "2px" }}>II</span>
+          <span style={{ color: s.nameColor }}>JP</span>
+          <span style={{ color: s.accentColor, marginLeft: "2px" }}>II</span>
+        </span>
+        {/* sm and up: full name, Sacred Cut treatment. */}
+        <span
+          className="hidden items-baseline whitespace-nowrap font-display font-bold leading-[0.95] sm:flex"
+          style={{ fontSize: s.namePx }}
+        >
+          <span style={{ color: s.nameColor }}>St.&nbsp;John&nbsp;Paul&nbsp;</span>
+          <span style={{ color: s.accentColor }}>II</span>
         </span>
         <span
-          className={`mt-[5px] block font-ui font-semibold tracking-[.2em] ${
-            isHeader ? "hidden sm:block" : ""
-          }`}
+          className="mt-[5px] hidden font-ui font-semibold tracking-[.2em] sm:block"
           style={{ fontSize: s.ministryPx, color: s.ministryColor }}
         >
           CATHOLIC CAMPUS MINISTRY

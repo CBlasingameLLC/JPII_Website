@@ -1,4 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
 import { Pill } from "@/components/ui/Pill";
 import { MobileNav } from "@/components/layout/MobileNav";
@@ -11,6 +15,10 @@ const NAV_LINKS = [
   { href: "/#about", label: "About" },
 ];
 
+const TALL_HEIGHT = 88;
+const SHORT_HEIGHT = 64;
+const SCROLL_THRESHOLD = 48;
+
 type HeaderProps = {
   theme?: "dark" | "light";
 };
@@ -18,6 +26,16 @@ type HeaderProps = {
 /** Sticky site header. "Mass & Confession" is first in nav order on purpose — per the design handoff, it's the most-wanted link. */
 export function Header({ theme = "dark" }: HeaderProps) {
   const isDark = theme === "dark";
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > SCROLL_THRESHOLD);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header
@@ -26,9 +44,21 @@ export function Header({ theme = "dark" }: HeaderProps) {
         isDark ? "bg-navy border-b border-white/14" : "bg-paper border-b-2 border-navy"
       )}
     >
-      <div className="mx-auto flex h-[88px] max-w-site items-center justify-between gap-10 px-5 sm:px-gutter">
+      <motion.div
+        className="mx-auto flex max-w-site items-center justify-between gap-10 overflow-hidden px-5 sm:px-gutter"
+        initial={false}
+        animate={{ height: scrolled ? SHORT_HEIGHT : TALL_HEIGHT }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+      >
         <Link href="/#top" className="flex items-center">
-          <Logo variant={isDark ? "header-dark" : "header-light"} />
+          <motion.div
+            initial={false}
+            animate={{ scale: scrolled ? 0.8 : 1 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            style={{ transformOrigin: "left center" }}
+          >
+            <Logo variant={isDark ? "header-dark" : "header-light"} />
+          </motion.div>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -43,14 +73,14 @@ export function Header({ theme = "dark" }: HeaderProps) {
                     ? "text-ivory hover:text-gold-light"
                     : "text-onnavy hover:text-gold-light"
                   : link.href === "/#week"
-                    ? "text-navy hover:text-orange"
-                    : "text-ink-warm hover:text-orange"
+                    ? "text-navy hover:text-gold"
+                    : "text-ink-warm hover:text-gold"
               )}
             >
               {link.label}
             </Link>
           ))}
-          <Pill href="/#give" variant={isDark ? "gold" : "orange"} size="sm">
+          <Pill href="/#give" variant="gold" size="sm">
             Give
           </Pill>
         </nav>
@@ -59,7 +89,7 @@ export function Header({ theme = "dark" }: HeaderProps) {
           links={[...NAV_LINKS, { href: "/#give", label: "Give" }]}
           theme={theme}
         />
-      </div>
+      </motion.div>
     </header>
   );
 }

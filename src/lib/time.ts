@@ -1,4 +1,4 @@
-import type { MinistryBreak, ScheduleDay, ScheduleDayKey } from "@/types/schedule";
+import type { MinistryBreak, ScheduleDay, ScheduleDayKey, WeeklyWindow } from "@/types/schedule";
 
 const DAY_ORDER: ScheduleDayKey[] = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 const DAY_NAMES = [
@@ -61,35 +61,59 @@ export function formatMassTime(massTime: { hour: number; minute: number }): stri
   return `${hour12}:${minute} ${period}`;
 }
 
-export function nextSundayMass(
-  chicagoNow: Date,
-  massTime: { hour: number; minute: number }
-): Date {
-  const target = new Date(
-    chicagoNow.getFullYear(),
-    chicagoNow.getMonth(),
-    chicagoNow.getDate(),
-    massTime.hour,
-    massTime.minute,
-    0
-  );
-  let delta = (7 - target.getDay()) % 7;
-  if (delta === 0 && chicagoNow.getTime() > target.getTime()) delta = 7;
-  target.setDate(target.getDate() + delta);
-  return target;
+function windowMinutes(t: { hour: number; minute: number }): number {
+  return t.hour * 60 + t.minute;
 }
 
-export function formatNextMassWhen(
-  target: Date,
-  chicagoNow: Date,
-  massTime: { hour: number; minute: number }
-): string {
+function isWithinWindow(chicagoNow: Date, window: WeeklyWindow): boolean {
+  if (!window.days.includes(chicagoNow.getDay())) return false;
+  const mins = chicagoNow.getHours() * 60 + chicagoNow.getMinutes();
+  return mins >= windowMinutes(window.start) && mins < windowMinutes(window.end);
+}
+
+/** The currently-active window, if any of `windows` is in session right now — the basis for a "Happening Now" state. */
+export function activeWindow(chicagoNow: Date, windows: WeeklyWindow[]): WeeklyWindow | null {
+  return windows.find((w) => isWithinWindow(chicagoNow, w)) ?? null;
+}
+
+/**
+ * The soonest upcoming start time across one or more recurring weekly
+ * windows — e.g. Mass is really three windows (weekday evening + two
+ * Sunday times), Confession and Adoration are one each. Looks up to 8 days
+ * ahead so it always finds a match even for a single-day-a-week window.
+ */
+export function nextOccurrence(chicagoNow: Date, windows: WeeklyWindow[]): Date {
+  let best: Date | null = null;
+  for (const w of windows) {
+    for (let offset = 0; offset < 8; offset++) {
+      const day = new Date(chicagoNow.getFullYear(), chicagoNow.getMonth(), chicagoNow.getDate() + offset);
+      if (!w.days.includes(day.getDay())) continue;
+      const candidate = new Date(
+        day.getFullYear(),
+        day.getMonth(),
+        day.getDate(),
+        w.start.hour,
+        w.start.minute,
+        0
+      );
+      if (candidate.getTime() > chicagoNow.getTime()) {
+        if (!best || candidate.getTime() < best.getTime()) best = candidate;
+        break;
+      }
+    }
+  }
+  if (!best) throw new Error("nextOccurrence: no matching day found within 8 days — check `windows.days`");
+  return best;
+}
+
+/** Generic day/time label — "Today, 5:30 PM" / "Thursday, 4:45 PM" — for any occurrence, not just Mass. */
+export function formatOccurrenceWhen(target: Date, chicagoNow: Date): string {
   const isToday = target.toDateString() === chicagoNow.toDateString();
   const dayLabel = isToday ? "Today" : DAY_NAMES[target.getDay()];
-  return `${dayLabel}, ${formatMassTime(massTime)}`;
+  return `${dayLabel}, ${formatMassTime({ hour: target.getHours(), minute: target.getMinutes() })}`;
 }
 
-export function formatNextMassIn(target: Date, chicagoNow: Date): string {
+export function formatOccurrenceIn(target: Date, chicagoNow: Date): string {
   const mins = Math.max(0, Math.round((target.getTime() - chicagoNow.getTime()) / 60000));
   const days = Math.floor(mins / 1440);
   const hours = Math.floor((mins % 1440) / 60);

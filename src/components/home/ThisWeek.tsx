@@ -19,8 +19,8 @@ export function ThisWeek() {
           </div>
           <div className="max-w-[340px] text-right font-accent text-xl italic text-muted">
             All liturgies at{" "}
-            <b className="font-semibold not-italic text-gold-deep">{SITE_CONFIG.venueName}</b>,
-            one block from the library.
+            <b className="font-semibold not-italic text-gold-deep">{SITE_CONFIG.venueName}</b>,{" "}
+            {SITE_CONFIG.streetAddress}.
           </div>
         </div>
 

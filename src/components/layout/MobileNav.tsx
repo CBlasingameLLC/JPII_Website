@@ -50,7 +50,7 @@ export function MobileNav({ links, theme }: MobileNavProps) {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.15 }}
             className={cn(
-              "absolute inset-x-0 top-[88px] z-50 overflow-hidden border-b",
+              "absolute inset-x-0 top-full z-50 overflow-hidden border-b",
               theme === "dark"
                 ? "bg-navy border-white/14"
                 : "bg-paper border-navy"
