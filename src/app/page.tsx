@@ -7,12 +7,14 @@ import { GetInvolved } from "@/components/home/GetInvolved";
 import { About } from "@/components/home/About";
 import { NewHere } from "@/components/home/NewHere";
 import { Give } from "@/components/home/Give";
+import { ScrollRose } from "@/components/home/ScrollRose";
 import { MotionSection } from "@/components/ui/MotionSection";
 import { SITE_CONFIG } from "@/content/site-config";
 
 export default function HomePage() {
   return (
     <>
+      <ScrollRose />
       <Header theme={SITE_CONFIG.headerTheme} />
       <Hero />
       <MotionSection>

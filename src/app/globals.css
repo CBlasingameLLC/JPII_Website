@@ -93,6 +93,20 @@
   a {
     color: var(--color-orange);
   }
+
+  /* Focus states per the design handoff (Hover States section): orange ring
+     on light grounds (the sitewide default — body background is ivory),
+     gold ring on navy grounds. Keyed off Tailwind's own bg-navy* utility
+     classes rather than a theme prop, so it applies automatically to any
+     current or future element without touching component code. */
+  :focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+  }
+
+  [class*="bg-navy"] :focus-visible {
+    outline-color: var(--color-gold-light);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

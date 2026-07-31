@@ -10,13 +10,16 @@ import {
   nextSundayMass,
 } from "@/lib/time";
 import { MINISTRY_BREAKS, SITE_CONFIG, SUNDAY_MASS_TIME } from "@/content/site-config";
+import type { LiturgicalSeason } from "@/lib/liturgical";
 
 type NextMassCardProps = {
   /** Server-computed fallback so the card is never empty/wrong pre-hydration. */
   initialWhen: string;
+  /** Server-computed (date-based, doesn't need client recomputation like `initialWhen` does). */
+  season: LiturgicalSeason;
 };
 
-export function NextMassCard({ initialWhen }: NextMassCardProps) {
+export function NextMassCard({ initialWhen, season }: NextMassCardProps) {
   const [when, setWhen] = useState(initialWhen);
   const [inText, setInText] = useState<string | null>(null);
 
@@ -34,11 +37,26 @@ export function NextMassCard({ initialWhen }: NextMassCardProps) {
 
   return (
     <div className="rounded-panel border border-gold-light/40 bg-navy-deep/66 p-[30px] backdrop-blur-[10px] sm:p-8">
-      <div className="flex items-center gap-[11px]">
-        <span className="h-[7px] w-[7px] rounded-full bg-orange" />
-        <span className="font-ui text-[10px] font-semibold uppercase tracking-[.22em] text-gold-light">
-          Next Student Mass
-        </span>
+      <div className="flex items-center justify-between gap-[11px]">
+        <div className="flex items-center gap-[11px]">
+          <span className="h-[7px] w-[7px] rounded-full bg-orange" />
+          <span className="font-ui text-[10px] font-semibold uppercase tracking-[.22em] text-gold-light">
+            Next Student Mass
+          </span>
+        </div>
+        <div className="flex items-center gap-[7px]" title="Current liturgical season">
+          <span
+            className="h-[7px] w-[7px] rounded-full"
+            style={{ backgroundColor: season.color }}
+            aria-hidden="true"
+          />
+          <span
+            className="font-ui text-[10px] font-semibold uppercase tracking-[.18em]"
+            style={{ color: season.color }}
+          >
+            {season.label}
+          </span>
+        </div>
       </div>
       <div className="mt-4 font-display text-[31px] font-bold leading-[1.15] text-ivory">
         {when}

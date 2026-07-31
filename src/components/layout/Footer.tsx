@@ -58,13 +58,13 @@ export function Footer() {
             {SITE_CONFIG.university}
           </div>
           <div className="flex gap-6">
-            <Link href="#give" className="text-onnavy-dim transition-colors hover:text-gold-light">
+            <Link href="/#give" className="text-onnavy-dim transition-colors hover:text-gold-light">
               Give
             </Link>
-            <Link href="#about" className="text-onnavy-dim transition-colors hover:text-gold-light">
+            <Link href="/#about" className="text-onnavy-dim transition-colors hover:text-gold-light">
               {SITE_CONFIG.diocese}
             </Link>
-            <Link href="#top" className="text-onnavy-dim transition-colors hover:text-gold-light">
+            <Link href="/#top" className="text-onnavy-dim transition-colors hover:text-gold-light">
               Back to top
             </Link>
           </div>

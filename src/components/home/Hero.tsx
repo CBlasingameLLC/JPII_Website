@@ -2,12 +2,14 @@ import { NextMassCard } from "@/components/home/NextMassCard";
 import { HeroCopy } from "@/components/home/HeroCopy";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { formatNextMassWhen, getChicagoNow, nextSundayMass } from "@/lib/time";
+import { getLiturgicalSeason } from "@/lib/liturgical";
 import { SUNDAY_MASS_TIME } from "@/content/site-config";
 
 export function Hero() {
   const now = getChicagoNow();
   const target = nextSundayMass(now, SUNDAY_MASS_TIME);
   const initialWhen = formatNextMassWhen(target, now, SUNDAY_MASS_TIME);
+  const season = getLiturgicalSeason(now);
 
   return (
     <section
@@ -21,7 +23,7 @@ export function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-site grid-cols-1 gap-10 px-5 pb-12 pt-20 sm:px-gutter lg:grid-cols-[1.35fr_1fr] lg:gap-14 lg:pb-16 lg:pt-24">
         <HeroCopy />
-        <NextMassCard initialWhen={initialWhen} />
+        <NextMassCard initialWhen={initialWhen} season={season} />
       </div>
     </section>
   );

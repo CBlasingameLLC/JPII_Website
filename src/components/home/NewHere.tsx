@@ -1,6 +1,7 @@
 import { formatMassTime } from "@/lib/time";
 import { SUNDAY_MASS_TIME } from "@/content/site-config";
 import { StaggerGrid, StaggerItem } from "@/components/ui/StaggerGrid";
+import { NewHereFlow } from "@/components/home/NewHereFlow";
 
 const STEPS = [
   {
@@ -60,6 +61,8 @@ export function NewHere() {
             </StaggerItem>
           ))}
         </StaggerGrid>
+
+        <NewHereFlow />
       </div>
     </section>
   );

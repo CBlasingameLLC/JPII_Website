@@ -5,10 +5,10 @@ import { MobileNav } from "@/components/layout/MobileNav";
 import { cn } from "@/lib/cn";
 
 const NAV_LINKS = [
-  { href: "#week", label: "Mass & Confession" },
-  { href: "#events", label: "Events" },
-  { href: "#involved", label: "Get Involved" },
-  { href: "#about", label: "About" },
+  { href: "/#week", label: "Mass & Confession" },
+  { href: "/#events", label: "Events" },
+  { href: "/#involved", label: "Get Involved" },
+  { href: "/#about", label: "About" },
 ];
 
 type HeaderProps = {
@@ -27,7 +27,7 @@ export function Header({ theme = "dark" }: HeaderProps) {
       )}
     >
       <div className="mx-auto flex h-[88px] max-w-site items-center justify-between gap-10 px-5 sm:px-gutter">
-        <Link href="#top" className="flex items-center">
+        <Link href="/#top" className="flex items-center">
           <Logo variant={isDark ? "header-dark" : "header-light"} />
         </Link>
 
@@ -39,10 +39,10 @@ export function Header({ theme = "dark" }: HeaderProps) {
               className={cn(
                 "font-ui text-xs font-semibold uppercase tracking-[.13em] transition-colors duration-150",
                 isDark
-                  ? link.href === "#week"
+                  ? link.href === "/#week"
                     ? "text-ivory hover:text-gold-light"
                     : "text-onnavy hover:text-gold-light"
-                  : link.href === "#week"
+                  : link.href === "/#week"
                     ? "text-navy hover:text-orange"
                     : "text-ink-warm hover:text-orange"
               )}
@@ -50,13 +50,13 @@ export function Header({ theme = "dark" }: HeaderProps) {
               {link.label}
             </Link>
           ))}
-          <Pill href="#give" variant={isDark ? "gold" : "orange"} size="sm">
+          <Pill href="/#give" variant={isDark ? "gold" : "orange"} size="sm">
             Give
           </Pill>
         </nav>
 
         <MobileNav
-          links={[...NAV_LINKS, { href: "#give", label: "Give" }]}
+          links={[...NAV_LINKS, { href: "/#give", label: "Give" }]}
           theme={theme}
         />
       </div>

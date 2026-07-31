@@ -17,6 +17,10 @@ type PrintfulSyncVariant = {
   name: string;
   retail_price: string;
   product?: { image?: string };
+  // Configured store availability — not a live catalog stock check, but
+  // real signal from Printful (distinct from the deprecated hardcoded
+  // `true` this used to be). "active" is the only orderable state.
+  availability_status?: "active" | "discontinued" | "out_of_stock" | "temporary_out_of_stock";
 };
 
 type PrintfulSyncProductDetail = {
@@ -72,7 +76,7 @@ async function main() {
         variantId: String(v.id),
         name: v.name,
         price: Math.round(parseFloat(v.retail_price) * 100),
-        inStock: true,
+        inStock: v.availability_status ? v.availability_status === "active" : true,
       })),
     });
   }

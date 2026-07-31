@@ -13,6 +13,14 @@ function resolveLineItems(requested: CheckoutRequestItem[]) {
     if (!product || !variant) {
       throw new Error(`Unknown variant: ${variantId}`);
     }
+    // products.generated.json ships with a sample "◆" catalog until
+    // `npm run sync:printful` runs with real credentials. Refuse to take
+    // real money against a variant ID that doesn't exist in Printful yet —
+    // Stripe has no idea it's fake, and fulfillment would fail forever.
+    if (product.name.includes("◆") || variant.name.includes("◆")) {
+      console.error(`Blocked checkout attempt against placeholder catalog entry: ${product.name} — ${variant.name}`);
+      throw new Error("This item isn't available for purchase yet — check back soon.");
+    }
     return { product, variant, quantity: Math.max(1, Math.min(quantity, 20)) };
   });
 }

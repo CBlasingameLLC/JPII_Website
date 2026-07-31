@@ -3,7 +3,12 @@ import { Cinzel, Archivo, Cormorant_Garamond } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import { RegisterServiceWorker } from "@/components/pwa/RegisterServiceWorker";
 import { InstallPrompt } from "@/components/pwa/InstallPrompt";
+import { getSiteUrl } from "@/lib/stripe";
 import "./globals.css";
+
+const TITLE = "John Paul II Catholic Campus Ministry — UT Tyler";
+const DESCRIPTION =
+  "A Catholic home on campus at The University of Texas at Tyler — Mass times, confession, events, and how to get involved.";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -25,10 +30,22 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "John Paul II Catholic Campus Ministry — UT Tyler",
-  description:
-    "A Catholic home on campus at The University of Texas at Tyler — Mass times, confession, events, and how to get involved.",
+  metadataBase: new URL(getSiteUrl()),
+  title: TITLE,
+  description: DESCRIPTION,
   icons: { icon: "/assets/favicon.svg" },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: "John Paul II Catholic Campus Ministry",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export const viewport: Viewport = {
