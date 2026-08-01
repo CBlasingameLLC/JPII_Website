@@ -54,7 +54,8 @@ export function NextMassCard({ initialMass, initialConfession, initialAdoration,
 
   return (
     <TiltCard>
-      <div className="rounded-panel border border-gold-light/40 bg-navy-deep/60 p-[30px] shadow-[inset_0_1px_0_rgba(255,255,255,.22)] backdrop-blur-[22px] sm:p-8">
+      {/* No border here — TiltCard's animated shine ring is the card's edge. */}
+      <div className="rounded-panel bg-navy-deep/60 p-[30px] shadow-[inset_0_1px_0_rgba(255,255,255,.22)] backdrop-blur-[22px] sm:p-8">
         <div className="flex items-center justify-between gap-[11px]">
           <div className="flex items-center gap-[11px]">
             <motion.span

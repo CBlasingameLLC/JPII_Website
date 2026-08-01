@@ -119,3 +119,108 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Animated conic-gradient border ("shine border") — a thin ring of light
+   continuously sweeping around an element's edge.
+
+   The gradient is masked down to just the border band rather than drawn as a
+   padded backing layer: the card it wraps is deliberately translucent glass,
+   so a backing layer would bleed the gradient through the whole card face
+   instead of tracing its edge. Masking keeps the interior fully transparent.
+
+   @property is what lets --shine-angle interpolate smoothly instead of
+   snapping 0deg→360deg; without it the ring simply sits still, which is a
+   safe unbroken fallback. Covered by the sitewide prefers-reduced-motion rule
+   above, being a plain CSS animation. */
+@property --shine-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.shine-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  --shine-angle: 0deg;
+  background: conic-gradient(
+    from var(--shine-angle),
+    rgba(231, 200, 119, 0.3) 0deg,
+    rgba(231, 200, 119, 0.3) 250deg,
+    rgba(246, 236, 201, 0.95) 292deg,
+    rgba(255, 255, 255, 0.98) 300deg,
+    rgba(246, 236, 201, 0.95) 308deg,
+    rgba(231, 200, 119, 0.3) 350deg,
+    rgba(231, 200, 119, 0.3) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: shine-rotate 6s linear infinite;
+}
+
+@keyframes shine-rotate {
+  to {
+    --shine-angle: 360deg;
+  }
+}
+
+/* Liquid-glass surface, two cooperating layers over a backdrop-blurred panel.
+   `glass-flow` is the slow body of it — two soft light pools drifting out of
+   phase with each other, which is what reads as liquid rather than as a static
+   gradient. `glass-shimmer` is the highlight that periodically travels across
+   the face; its long tail of held time keeps it an occasional glint instead of
+   a strobe. Both are plain CSS animations, so the sitewide
+   prefers-reduced-motion rule above already stills them. */
+/* Alphas stay low deliberately: these pools pass over the card's own text, and
+   legibility on the primary Mass card outranks a stronger shimmer. */
+.glass-flow {
+  background:
+    radial-gradient(55% 45% at 25% 30%, rgba(231, 200, 119, 0.16), transparent 70%),
+    radial-gradient(50% 42% at 75% 70%, rgba(255, 255, 255, 0.12), transparent 70%);
+  filter: blur(16px);
+  animation: glass-drift 17s ease-in-out infinite;
+}
+
+@keyframes glass-drift {
+  0%,
+  100% {
+    transform: translate3d(-4%, -3%, 0) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate3d(5%, 4%, 0) scale(1.26);
+    opacity: 1;
+  }
+}
+
+.glass-shimmer {
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.09) 46%,
+    rgba(246, 236, 201, 0.2) 50%,
+    rgba(255, 255, 255, 0.09) 54%,
+    transparent 62%
+  );
+  animation: glass-sweep 8s ease-in-out infinite;
+}
+
+@keyframes glass-sweep {
+  0% {
+    transform: translateX(-125%);
+  }
+  55%,
+  100% {
+    transform: translateX(125%);
+  }
+}

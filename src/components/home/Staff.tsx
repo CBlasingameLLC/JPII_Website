@@ -24,9 +24,11 @@ export function Staff() {
         </div>
 
         <StaggerGrid className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {STAFF.map((member) => (
+          {/* Keyed by index, not name — a hand-authored static list where names
+              legitimately repeat (placeholders now, potentially real namesakes later). */}
+          {STAFF.map((member, i) => (
             <StaggerItem
-              key={member.name}
+              key={i}
               className="rounded-inner border border-border bg-paper p-[26px_28px] text-center"
             >
               <div className="relative mx-auto h-[88px] w-[88px] overflow-hidden rounded-full">

@@ -14,9 +14,10 @@ export function StudentLeadership() {
         </p>
 
         <StaggerGrid className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {STUDENT_LEADERS.map((leader) => (
+          {/* Keyed by index, not name — see Staff.tsx. */}
+          {STUDENT_LEADERS.map((leader, i) => (
             <StaggerItem
-              key={leader.name}
+              key={i}
               className="rounded-inner border border-white/20 bg-white/[.03] p-[26px_22px] text-center transition-all duration-200 hover:-translate-y-1 hover:-rotate-1 hover:border-gold-light hover:bg-gold-light/[.07]"
             >
               <div className="relative mx-auto h-[92px] w-[92px] overflow-hidden rounded-full border-2 border-gold-light/40">
