@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
+import { CampusSwitch } from "@/components/ui/CampusSwitch";
 import { SITE_CONFIG } from "@/content/site-config";
 
 export function Footer() {
@@ -13,6 +14,15 @@ export function Footer() {
             <p className="mt-[22px] font-accent text-[19px] italic text-gold-light">
               {SITE_CONFIG.tagline}
             </p>
+            <div className="mt-7">
+              <div className="font-ui text-[10px] font-semibold uppercase tracking-[.2em] text-gold-light">
+                Campus colours
+              </div>
+              <p className="mt-[10px] max-w-[230px] text-[12.5px] leading-[1.6] text-onnavy-dim">
+                JPII is home to students from both schools. Pick whichever is yours.
+              </p>
+              <CampusSwitch className="mt-3 text-onnavy-dim" />
+            </div>
           </div>
 
           <div>

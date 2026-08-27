@@ -5,7 +5,36 @@ You are filling in `src/content/catholic-history.json`, the dataset behind the
 on purpose and is meant to fill in over many runs. Do one batch per run and
 stop.
 
-## What to do each run
+## Two phases — finish Phase 1 before starting Phase 2
+
+### Phase 1 — back-verify the seed entries
+
+The dataset shipped with 37 hand-written seed entries. They were drawn from
+well-established dates but were **never individually source-checked**, and they
+carry no `source` field. Until every entry has one, the job each run is
+verification, not expansion. **Add no new dates during Phase 1.**
+
+Each run, take **8 to 10 entries that have no `source`** and check each one:
+
+- **Confirmed, date correct** → add the `source` URL. Leave the text alone
+  unless something in it is actually wrong.
+- **Event is real but on a different day** → move it to the correct `MM-DD`
+  key, if that key is free. If the correct key is already taken, drop the entry
+  rather than doubling up. Report the move either way.
+- **Cannot verify against a reliable source** → **delete the entry.** An
+  unverifiable claim should not sit on a parish website. Report every deletion.
+- **Detail is wrong but the event and date hold** → fix the detail, add the
+  source, and say what you changed.
+
+Be especially suspicious of death dates that may actually be feast days, and of
+anything where "announced", "opened", "promulgated" or "took effect" could have
+been conflated.
+
+Phase 1 is complete when every entry in the file has a `source`.
+
+### Phase 2 — expand
+
+Only once Phase 1 is done:
 
 1. Read `src/content/catholic-history.json` and list which `MM-DD` keys already
    exist. **Never overwrite or rewrite an existing entry** — you are only adding
@@ -71,8 +100,15 @@ A date may hold two entries if both are genuinely significant, but prefer one.
 - Run `npx tsc --noEmit` — the JSON is typed through `src/lib/catholic-history.ts`
   and a malformed file will fail there.
 - Commit only `src/content/catholic-history.json`. Nothing else should change.
-- Commit message: `Add Today in Catholic History entries for <dates>`, listing
-  the `MM-DD` keys added.
+- Commit message: in Phase 1, `Verify Today in Catholic History entries for
+  <dates>`; in Phase 2, `Add Today in Catholic History entries for <dates>`.
+  List the `MM-DD` keys touched either way.
 - Push to `main`.
-- In your final message, report which dates you added, which you attempted and
-  skipped for lack of a reliable source, and the current coverage out of 366.
+- In your final message, report:
+  - **Which phase you were in**, and how many entries still lack a `source`.
+  - Phase 1: what you verified, what you corrected or moved, and **what you
+    deleted and why** — call deletions out plainly, they are the ones a human
+    may want to second-guess.
+  - Phase 2: which dates you added, and which you attempted and skipped for
+    lack of a reliable source.
+  - Current coverage out of 366.

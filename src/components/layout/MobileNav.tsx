@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { CampusSwitch } from "@/components/ui/CampusSwitch";
 import { cn } from "@/lib/cn";
 
 type NavLink = { href: string; label: string };
@@ -70,6 +71,16 @@ export function MobileNav({ links, theme }: MobileNavProps) {
                   {link.label}
                 </Link>
               ))}
+              {/* The header's own switch lives in the desktop-only nav, so
+                  without this a phone would only ever find it in the footer. */}
+              <div
+                className={cn(
+                  "mt-2 border-t pt-4",
+                  theme === "dark" ? "border-white/14" : "border-border"
+                )}
+              >
+                <CampusSwitch className={theme === "dark" ? "text-onnavy-dim" : "text-muted"} />
+              </div>
             </nav>
           </motion.div>
         )}

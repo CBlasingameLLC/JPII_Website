@@ -61,8 +61,20 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${cinzel.variable} ${archivo.variable} ${cormorant.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-ui">
+        {/* Applies the saved campus accent before anything paints. Inline and
+            synchronous on purpose — deferring it to an effect would show UT
+            Tyler orange for a frame to a TJC student on every page load.
+            The server can't know the choice, hence suppressHydrationWarning
+            on <html>. See components/ui/CampusSwitch.tsx. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('jpii-campus')==='tjc'){document.documentElement.dataset.campus='tjc'}}catch(e){}",
+          }}
+        />
         <MotionConfig reducedMotion="user">
           {children}
           <RegisterServiceWorker />

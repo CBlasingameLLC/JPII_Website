@@ -291,3 +291,91 @@
     opacity: 0;
   }
 }
+
+/* ── Campus accent themes ───────────────────────────────────────────────────
+   JPII serves both UT Tyler and Tyler Junior College. UT Tyler is the default
+   and stays the primary identity; TJC gets an accent-level theme so its
+   students see their own colours without the ministry becoming a different
+   site. Per the brand board, "blue is constant" — navy grounds and the warm
+   ivory neutrals never change. Only the campus accent does.
+
+   Gold is deliberately untouched by either theme. In this system gold means
+   *sacred* (the cross, the liturgical season marker, the Mass card), and TJC's
+   #FFCD00 sits close enough to it that letting yellow take gold's place would
+   collapse the gold-is-sacred / accent-is-campus split the brand board defines.
+
+   Three accent tokens rather than one, because TJC's yellow is far lighter
+   than UT Tyler's orange and cannot do all three jobs:
+     --color-orange      the accent as a FILL (buttons, chips, active bars)
+     --color-orange-ink  the accent as TEXT or a hairline on light grounds
+     --color-orange-on   the foreground that sits ON the accent fill
+   UT Tyler's orange is dark enough that ink and fill are the same value; TJC's
+   is not, so its ink is a deepened gold that clears 4.5:1 on both ivory
+   grounds, and its on-colour flips to near-black. Without that split, white
+   text on #FFCD00 lands around 1.5:1 — illegible. */
+:root {
+  --color-orange-ink: var(--color-orange);
+  --color-orange-on: var(--color-paper);
+}
+
+:root[data-campus="tjc"] {
+  --color-orange: #ffcd00;
+  --color-orange-ink: #7a5d00;
+  --color-orange-on: #121212;
+  --color-orange-pale: #ffe9a3;
+}
+
+/* Tailwind emits its utilities inside @layer utilities; these unlayered rules
+   therefore win regardless of specificity, which is what lets the accent swap
+   reach all 27 components without editing any of them.
+   Orange is only ever used on light grounds in this design (gold is the accent
+   on navy, per the brand board), so the ink swap needs no dark-ground case. */
+.text-orange {
+  color: var(--color-orange-ink);
+}
+
+.border-orange {
+  border-color: var(--color-orange-ink);
+}
+
+.bg-orange.text-paper,
+.bg-orange.text-ivory {
+  color: var(--color-orange-on);
+}
+
+:focus-visible {
+  outline-color: var(--color-orange-ink);
+}
+
+/* The switch itself. Kept to the two campus marks rather than a generic
+   toggle, so it reads as "which school are you" rather than a display setting. */
+.campus-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+  border: 1px solid currentColor;
+  opacity: 0.55;
+}
+
+.campus-switch:hover {
+  opacity: 1;
+}
+
+.campus-switch button {
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.campus-switch button[aria-pressed="true"] {
+  background: var(--color-orange);
+  color: var(--color-orange-on);
+}

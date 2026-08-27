@@ -46,22 +46,114 @@ const SUBJECTS = [
 ];
 
 /**
- * Horizontal focal point as a fraction of source width, used to place the 4:5
- * window. sharp has no face detection and its `attention` strategy is drawn to
- * high-contrast shirt graphics as readily as to faces, so these are set by eye
- * against the actual frames. Vertical is handled by FOCAL_Y below.
+ * Horizontal focal point, measured rather than eyeballed.
+ *
+ * These were originally set by eye and every one of them was wrong — by up to
+ * 11% of frame width — which left subjects visibly off-centre in their cards.
+ * sharp has no face detection, and its `attention` strategy latches onto
+ * high-contrast shirt graphics as readily as faces, so neither was usable.
+ *
+ * What works is exploiting the backdrop: it is uniform along any given row
+ * (horizontal planks, whatever the lighting), so the person is simply whatever
+ * deviates from that row's median. Summing that deviation per column gives a
+ * mass distribution whose centroid is the subject. Measuring instead of
+ * guessing also means new photos self-centre without anyone tuning numbers.
+ *
+ * Override only if detection visibly fails on a particular frame.
  */
-const FOCAL_X = {
-  alvaro: 0.42,
-  gabe: 0.44,
-  sarah: 0.42,
-  marissa: 0.44,
-  matthew: 0.45,
-  paul: 0.45,
-  unidentified: 0.45,
-  huh: 0.5,
-  "mary-sue": 0.5,
-};
+const FOCAL_X_OVERRIDE = {};
+
+const MEASURE_WIDTH = 300;
+/** Band to measure: below the headroom, above where arms and hips spread out. */
+const MEASURE_TOP = 0.15;
+const MEASURE_BOTTOM = 0.78;
+/** Columns quieter than this share of the peak are treated as backdrop. */
+const MEASURE_FLOOR = 0.35;
+/** Refinement stops once the subject is within this fraction of dead centre. */
+const CENTER_TOLERANCE = 0.004;
+const MAX_PASSES = 14;
+/**
+ * Moving the window changes how much backdrop is in shot, which nudges the
+ * measurement itself — so a full-size correction overshoots and the estimate
+ * oscillates instead of settling. Taking a partial step each pass converges.
+ */
+const CORRECTION_DAMPING = 0.6;
+
+function median(values) {
+  const sorted = [...values].sort((a, b) => a - b);
+  return sorted[sorted.length >> 1];
+}
+
+/**
+ * Where the subject sits horizontally within a given image, 0–1.
+ *
+ * The backdrop is uniform along any given row — whatever the lighting or the
+ * plank colour — so a pixel's deviation from its own row's median is a good
+ * proxy for "this is the person". Summing that per column gives a mass
+ * distribution whose centroid is the subject.
+ */
+async function measureSubjectCenter(pipeline) {
+  const { data, info } = await pipeline
+    .resize(MEASURE_WIDTH)
+    .grayscale()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  const { width, height } = info;
+  const colMass = new Float64Array(width);
+  const row = new Array(width);
+
+  for (let y = Math.floor(height * MEASURE_TOP); y < Math.floor(height * MEASURE_BOTTOM); y++) {
+    for (let x = 0; x < width; x++) row[x] = data[y * width + x];
+    const rowMedian = median(row);
+    for (let x = 0; x < width; x++) colMass[x] += Math.abs(row[x] - rowMedian);
+  }
+
+  const peak = Math.max(...colMass);
+  if (peak === 0) return 0.5;
+
+  let weighted = 0;
+  let total = 0;
+  for (let x = 0; x < width; x++) {
+    if (colMass[x] < peak * MEASURE_FLOOR) continue;
+    weighted += x * colMass[x];
+    total += colMass[x];
+  }
+  return total === 0 ? 0.5 : weighted / total / width;
+}
+
+/**
+ * Finds the focal point that actually lands the subject in the middle of the
+ * finished card, by cropping, measuring the result, and correcting.
+ *
+ * Measuring the source once and using that as the focal point sounds
+ * equivalent but isn't: cropWindow clamps the window at the frame edges, so on
+ * the tighter portrait frames the window can't always sit where the maths
+ * wants it, and the subject drifts. Closing the loop on the *output* is the
+ * only version that's actually checkable — it optimises the thing we care
+ * about rather than a proxy for it, and it converges for new photos without
+ * anyone hand-tuning numbers.
+ */
+async function solveFocalX(srcPath, width, height, ratio, focalY, zoom) {
+  let focal = 0.5;
+  // Keep the best pass rather than whatever the last one happened to be, so a
+  // frame that never fully settles still ships its closest crop.
+  let best = { focal, center: 0.5, error: Infinity };
+
+  for (let pass = 0; pass < MAX_PASSES; pass++) {
+    const region = cropWindow(width, height, ratio, focal, focalY, zoom);
+    const center = await measureSubjectCenter(sharp(srcPath).extract(region));
+    const error = center - 0.5;
+
+    if (Math.abs(error) < Math.abs(best.error)) best = { focal, center, error };
+    if (Math.abs(error) < CENTER_TOLERANCE) break;
+
+    // Convert the miss (a fraction of the crop) back into source coordinates.
+    focal += error * (region.width / width) * CORRECTION_DAMPING;
+  }
+
+  return best;
+}
 
 /**
  * Vertical focal point. The studio frames leave a lot of headroom, so the crop
@@ -135,14 +227,17 @@ async function main() {
     }
 
     const { width, height } = await sharp(src).metadata();
-    const region = cropWindow(
-      width,
-      height,
-      ratio,
-      FOCAL_X[slug] ?? 0.5,
-      FOCAL_Y[slug] ?? DEFAULT_FOCAL_Y,
-      ZOOM[slug] ?? 1
-    );
+    const focalY = FOCAL_Y[slug] ?? DEFAULT_FOCAL_Y;
+    const zoom = ZOOM[slug] ?? 1;
+
+    const override = FOCAL_X_OVERRIDE[slug];
+    const solved =
+      override === undefined
+        ? await solveFocalX(src, width, height, ratio, focalY, zoom)
+        : { focal: override, center: null };
+    const focalX = solved.focal;
+
+    const region = cropWindow(width, height, ratio, focalX, focalY, zoom);
     const grade = { ...BASE_GRADE, ...(GRADE_OVERRIDES[slug] ?? {}) };
 
     await sharp(src)
@@ -152,8 +247,14 @@ async function main() {
       .webp({ quality: 82 })
       .toFile(path.join(OUT_DIR, `${slug}.webp`));
 
+    // `subject` is where the person actually ended up in the finished card;
+    // anything not close to 0.500 means centring failed for that frame.
+    const landed =
+      solved.center === null
+        ? "override"
+        : `subject=${solved.center.toFixed(3)}${Math.abs(solved.center - 0.5) < 0.01 ? "" : "  <-- OFF-CENTRE"}`;
     console.log(
-      `  ok    ${slug.padEnd(13)} ${width}x${height} -> ${OUT_W}x${OUT_H}  sat=${grade.saturation}`
+      `  ok    ${slug.padEnd(13)} focalX=${focalX.toFixed(3)}  ${landed}  sat=${grade.saturation}`
     );
     done += 1;
   }

@@ -112,15 +112,19 @@ export function LeaderGrid() {
               )}
             >
               <div className={cn("flex h-full min-h-0", isOpen ? "flex-col sm:flex-row" : "flex-col")}>
-                {/* Photo. Uniform 4:5 at rest; when open it fills the column
-                    height so the card stays the same height as its neighbours
-                    instead of stretching the grid row. */}
+                {/* Photo. Always 4:5, in both states.
+                    It used to stretch to the card's full height when open,
+                    which sounds harmless but isn't: object-cover then fills a
+                    tall narrow box from a 4:5 source and throws away ~38% of
+                    the image's width, clipping people out of their own card.
+                    Widening the column doesn't rescue it — even at half the
+                    card, a quarter of the width is still lost. Holding the
+                    aspect and centring it vertically instead crops nothing;
+                    the space above and below is just card. */}
                 <div
                   className={cn(
-                    "relative overflow-hidden bg-navy-deep",
-                    isOpen
-                      ? "aspect-[4/5] w-full flex-none sm:aspect-auto sm:h-full sm:w-[42%]"
-                      : "aspect-[4/5] w-full"
+                    "relative aspect-[4/5] w-full overflow-hidden bg-navy-deep",
+                    isOpen && "flex-none sm:w-[46%] sm:self-center"
                   )}
                 >
                   <Image

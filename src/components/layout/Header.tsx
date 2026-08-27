@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
 import { Pill } from "@/components/ui/Pill";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { CampusSwitch } from "@/components/ui/CampusSwitch";
 import { cn } from "@/lib/cn";
 
 const NAV_LINKS = [
@@ -81,6 +82,7 @@ export function Header({ theme = "dark" }: HeaderProps) {
               {link.label}
             </Link>
           ))}
+          <CampusSwitch className={isDark ? "text-onnavy-dim" : "text-muted"} />
           <Pill href="/#give" variant="gold" size="sm">
             Give
           </Pill>
