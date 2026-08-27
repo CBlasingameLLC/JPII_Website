@@ -38,6 +38,17 @@ export const SITE_CONFIG = {
 
   diocese: "Diocese of Tyler",
   dioceseUrl: "https://www.dioceseoftyler.org/",
+
+  /**
+   * The parish's existing online giving portal, already live and already the
+   * rail the ministry uses today. Distinct from the Stripe Give flow in
+   * app/api/checkout/give — that one is still pending sign-off, this one is
+   * known-good, so it's surfaced as the primary way to give.
+   */
+  givingUrl: "https://app.easytithe.com/app/giving/tylercatholic",
+
+  /** Geocoded from streetAddress via OpenStreetMap Nominatim. */
+  coords: { lat: 32.3213365, lng: -95.2517986 },
 } as const;
 
 /**

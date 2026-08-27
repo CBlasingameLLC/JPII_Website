@@ -224,3 +224,70 @@
     transform: translateX(125%);
   }
 }
+
+/* Leaflet map, themed to the site.
+
+   CARTO's dark basemap is neutral grey, and hue-rotate does nothing to a
+   desaturated image — so sepia() is applied first purely to give the tiles a
+   hue that can then be rotated round to the brand navy. Saturation and
+   brightness are held down so the map stays a quiet ground for the gold
+   marker rather than competing with it. */
+.jpii-map .leaflet-tile-pane {
+  filter: sepia(1) hue-rotate(178deg) saturate(1.5) brightness(0.82) contrast(1.06);
+}
+
+.jpii-map.leaflet-container {
+  background: var(--color-navy-black);
+  font-family: var(--font-ui);
+}
+
+.jpii-map .leaflet-control-attribution {
+  background: rgba(4, 22, 47, 0.72);
+  color: var(--color-onnavy-dim);
+  font-size: 10px;
+}
+
+.jpii-map .leaflet-control-attribution a {
+  color: var(--color-gold-light);
+}
+
+.jpii-map .leaflet-control-zoom a {
+  background: rgba(6, 30, 69, 0.9);
+  color: var(--color-gold-light);
+  border-color: rgba(231, 200, 119, 0.25);
+}
+
+.jpii-map .leaflet-control-zoom a:hover {
+  background: var(--color-navy-lift);
+}
+
+/* Marker: a gold dot with a slow outward pulse, so the eye finds the Center
+   before it reads any street name. */
+.jpii-marker-dot,
+.jpii-marker-pulse {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.jpii-marker-dot {
+  inset: 4px;
+  background: var(--color-gold-light);
+  box-shadow: 0 0 0 3px rgba(4, 22, 47, 0.85);
+}
+
+.jpii-marker-pulse {
+  inset: 0;
+  border: 1.5px solid var(--color-gold-light);
+  animation: marker-pulse 2.8s ease-out infinite;
+}
+
+@keyframes marker-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}

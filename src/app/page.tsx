@@ -1,6 +1,9 @@
+import { Suspense } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/home/Hero";
+import { DailyLiturgy } from "@/components/home/DailyLiturgy";
+import { TodayInHistory } from "@/components/home/TodayInHistory";
 import { ThisWeek } from "@/components/home/ThisWeek";
 import { Events } from "@/components/home/Events";
 import { GetInvolved } from "@/components/home/GetInvolved";
@@ -8,6 +11,7 @@ import { StudentLeadership } from "@/components/home/StudentLeadership";
 import { About } from "@/components/home/About";
 import { Staff } from "@/components/home/Staff";
 import { NewHere } from "@/components/home/NewHere";
+import { Location } from "@/components/home/Location";
 import { Give } from "@/components/home/Give";
 import { ScrollRose } from "@/components/home/ScrollRose";
 import { MotionSection } from "@/components/ui/MotionSection";
@@ -19,6 +23,12 @@ export default function HomePage() {
       <ScrollRose />
       <Header theme={SITE_CONFIG.headerTheme} />
       <Hero />
+      {/* Suspended so a slow upstream liturgical feed can never hold up the
+          rest of the page; it renders nothing at all if both sources fail. */}
+      <Suspense fallback={null}>
+        <DailyLiturgy />
+      </Suspense>
+      <TodayInHistory />
       <MotionSection>
         <ThisWeek />
       </MotionSection>
@@ -39,6 +49,9 @@ export default function HomePage() {
       </MotionSection>
       <MotionSection>
         <NewHere />
+      </MotionSection>
+      <MotionSection>
+        <Location />
       </MotionSection>
       <MotionSection>
         <Give />

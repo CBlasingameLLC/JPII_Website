@@ -1,0 +1,231 @@
+{
+  "_readme": [
+    "Today in Catholic History. Keys are MM-DD; each holds one or more events.",
+    "This file grows over time: a scheduled research agent fills in dates that",
+    "have no entry yet (see scripts/history-agent-brief.md). It is safe to edit",
+    "by hand — keep keys zero-padded, keep years as numbers, and keep each text",
+    "to one or two plain sentences.",
+    "Seed entries were written from well-established dates but have not been",
+    "individually source-checked; the agent adds a `source` as it verifies them."
+  ],
+  "entries": {
+    "01-04": [
+      {
+        "year": 1821,
+        "text": "St. Elizabeth Ann Seton died at Emmitsburg, Maryland. A widow with five children who converted at 30, she went on to found the first Catholic girls' school in the United States, and became the first native-born American citizen to be canonized."
+      }
+    ],
+    "01-25": [
+      {
+        "year": 1959,
+        "text": "John XXIII announced he would convene an ecumenical council. He had been pope barely three months, and almost nobody expected it — the announcement reportedly met with silence from the cardinals in the room."
+      }
+    ],
+    "02-11": [
+      {
+        "year": 1858,
+        "text": "A 14-year-old named Bernadette Soubirous saw a woman in a grotto outside Lourdes while gathering firewood. Her family was so poor they were living in a former jail cell."
+      },
+      {
+        "year": 2013,
+        "text": "Benedict XVI announced his resignation, in Latin, at a routine consistory. He was the first pope to step down voluntarily in nearly six centuries."
+      }
+    ],
+    "03-07": [
+      {
+        "year": 1274,
+        "text": "St. Thomas Aquinas died at Fossanova on his way to the Council of Lyon. He had stopped writing months earlier, saying that after what he had seen in prayer, everything he had written seemed like straw."
+      }
+    ],
+    "03-13": [
+      {
+        "year": 2013,
+        "text": "Jorge Mario Bergoglio was elected pope and took the name Francis — the first pope from the Americas, the first Jesuit, and the first to take that name."
+      }
+    ],
+    "03-24": [
+      {
+        "year": 1980,
+        "text": "St. Óscar Romero was shot dead while celebrating Mass in a hospital chapel in San Salvador, one day after publicly calling on soldiers to stop carrying out the government's killings."
+      }
+    ],
+    "04-02": [
+      {
+        "year": 2005,
+        "text": "Pope St. John Paul II died in the Apostolic Palace after 26 years as pope. Crowds had filled St. Peter's Square for days; this ministry carries his name."
+      }
+    ],
+    "04-19": [
+      {
+        "year": 2005,
+        "text": "Cardinal Joseph Ratzinger was elected on the fourth ballot and took the name Benedict XVI."
+      }
+    ],
+    "04-27": [
+      {
+        "year": 2014,
+        "text": "John XXIII and John Paul II were canonized together by Pope Francis, with Benedict XVI also present — two living popes and two new saints in one morning."
+      }
+    ],
+    "05-20": [
+      {
+        "year": 325,
+        "text": "The First Council of Nicaea opened. Its work is the reason the Creed said at Mass on Sunday exists in the form it does."
+      }
+    ],
+    "05-30": [
+      {
+        "year": 1431,
+        "text": "St. Joan of Arc was burned at the stake at Rouen, aged about 19. The Church that condemned her retried the case 25 years later and declared her innocent."
+      }
+    ],
+    "06-05": [
+      {
+        "year": 754,
+        "text": "St. Boniface was killed in Frisia along with his companions. Accounts say he raised a book to shield himself from the sword."
+      }
+    ],
+    "06-22": [
+      {
+        "year": 1633,
+        "text": "Galileo Galilei was condemned by the Roman Inquisition and made to abjure his defence of a sun-centred cosmos. The Church formally acknowledged the errors of the case in 1992."
+      }
+    ],
+    "07-06": [
+      {
+        "year": 1535,
+        "text": "St. Thomas More was beheaded on Tower Hill for refusing to endorse Henry VIII's claim over the Church in England. He said he died the king's good servant, but God's first."
+      }
+    ],
+    "07-31": [
+      {
+        "year": 1556,
+        "text": "St. Ignatius of Loyola died in Rome. A soldier until a cannonball shattered his leg, he spent the long convalescence reading the only books available — the life of Christ and the lives of the saints."
+      }
+    ],
+    "08-04": [
+      {
+        "year": 1859,
+        "text": "St. John Vianney died at Ars. He had struggled badly with his studies and was nearly refused ordination; he ended up spending as much as sixteen hours a day hearing confessions."
+      }
+    ],
+    "08-14": [
+      {
+        "year": 1941,
+        "text": "St. Maximilian Kolbe died in the starvation bunker at Auschwitz. He had stepped forward to take the place of a stranger, a married man with children, who had been picked to die."
+      }
+    ],
+    "08-28": [
+      {
+        "year": 430,
+        "text": "St. Augustine died at Hippo while the city was under siege. His Confessions is still, sixteen centuries on, one of the most honest books ever written about wanting to be good and not managing it."
+      }
+    ],
+    "09-04": [
+      {
+        "year": 2016,
+        "text": "Mother Teresa of Calcutta was canonized in St. Peter's Square."
+      }
+    ],
+    "09-05": [
+      {
+        "year": 1997,
+        "text": "St. Teresa of Calcutta died. Her private letters, published later, revealed decades of interior darkness she had kept almost entirely to herself."
+      }
+    ],
+    "09-23": [
+      {
+        "year": 1968,
+        "text": "St. Padre Pio died at San Giovanni Rotondo."
+      }
+    ],
+    "09-27": [
+      {
+        "year": 1660,
+        "text": "St. Vincent de Paul died in Paris. Once captured by pirates and sold as a slave, he spent his later life organising care for foundlings, galley slaves, and the rural poor."
+      }
+    ],
+    "09-30": [
+      {
+        "year": 1897,
+        "text": "St. Thérèse of Lisieux died of tuberculosis at 24, having spent nine years in a Carmelite convent and done nothing the world would call remarkable. She is now a Doctor of the Church."
+      }
+    ],
+    "10-03": [
+      {
+        "year": 1226,
+        "text": "St. Francis of Assisi died on the evening of 3 October at the Portiuncula, having asked to be laid on the bare ground."
+      }
+    ],
+    "10-11": [
+      {
+        "year": 1962,
+        "text": "The Second Vatican Council opened in St. Peter's Basilica with over 2,000 bishops present — the largest gathering of its kind in the Church's history."
+      }
+    ],
+    "10-16": [
+      {
+        "year": 1978,
+        "text": "Karol Wojtyła was elected pope and took the name John Paul II — the first non-Italian in 455 years. He told the crowd he would correct himself if he made mistakes in their Italian."
+      }
+    ],
+    "10-21": [
+      {
+        "year": 2012,
+        "text": "St. Kateri Tekakwitha was canonized, the first Native American saint. She was orphaned by smallpox at four and left badly scarred by it."
+      }
+    ],
+    "11-01": [
+      {
+        "year": 1950,
+        "text": "Pius XII defined the Assumption of Mary as dogma in Munificentissimus Deus — the only time a pope has explicitly invoked papal infallibility since it was defined in 1870."
+      }
+    ],
+    "11-03": [
+      {
+        "year": 1584,
+        "text": "St. Charles Borromeo died at Milan, aged 46. He had stayed in the city through the plague of 1576 when much of the civil government left."
+      }
+    ],
+    "12-03": [
+      {
+        "year": 1552,
+        "text": "St. Francis Xavier died on Shangchuan Island, within sight of mainland China, which he had spent his last months trying to enter."
+      }
+    ],
+    "12-08": [
+      {
+        "year": 1854,
+        "text": "Pius IX defined the dogma of the Immaculate Conception in Ineffabilis Deus."
+      },
+      {
+        "year": 1965,
+        "text": "The Second Vatican Council formally closed, just over three years after it opened."
+      }
+    ],
+    "12-09": [
+      {
+        "year": 1531,
+        "text": "St. Juan Diego, a farmer in his fifties, met a young woman on Tepeyac hill who spoke to him in his own Nahuatl language. Within a decade millions in Mexico had been baptised."
+      }
+    ],
+    "12-13": [
+      {
+        "year": 1545,
+        "text": "The Council of Trent opened. It ran on and off for eighteen years and shaped Catholic life for the four centuries that followed."
+      }
+    ],
+    "12-25": [
+      {
+        "year": 800,
+        "text": "Charlemagne was crowned emperor by Pope Leo III in St. Peter's during Christmas Mass — a moment that set the terms of the relationship between Church and European rulers for centuries."
+      }
+    ],
+    "12-29": [
+      {
+        "year": 1170,
+        "text": "St. Thomas Becket was killed by four knights in his own cathedral at Canterbury, after Henry II reportedly wondered aloud who would rid him of the troublesome priest."
+      }
+    ]
+  }
+}

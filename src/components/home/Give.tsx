@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionEyebrow } from "@/components/home/SectionEyebrow";
-import { Pill } from "@/components/ui/Pill";
 import { GIVE_TIERS } from "@/content/give-tiers";
+import { SITE_CONFIG } from "@/content/site-config";
 
 async function startGiveCheckout(tierId: string, setLoadingId: (id: string | null) => void) {
   setLoadingId(tierId);
@@ -26,8 +26,6 @@ async function startGiveCheckout(tierId: string, setLoadingId: (id: string | nul
 
 export function Give() {
   const [loadingId, setLoadingId] = useState<string | null>(null);
-  const monthlyTier = GIVE_TIERS.find((t) => t.interval === "monthly") ?? GIVE_TIERS[0];
-  const oneTimeTier = GIVE_TIERS.find((t) => t.interval === "one_time") ?? GIVE_TIERS[0];
 
   return (
     <section
@@ -44,25 +42,32 @@ export function Give() {
             Every retreat scholarship, every Sunday lunch, every hour of campus ministry is
             paid for by alumni, parents, and parishioners who decided this mattered.
           </p>
-          <div className="mt-[34px] flex flex-wrap gap-[14px]">
-            <Pill
-              variant="gold"
-              onClick={() => startGiveCheckout(monthlyTier.id, setLoadingId)}
-              disabled={loadingId !== null}
+          {/* The parish's own EasyTithe portal leads, because it is the rail
+              the ministry already uses and already trusts. The Stripe tiers
+              opposite are a second, faster path for a fixed amount — kept
+              visually subordinate so nobody has to work out which is
+              "official". */}
+          <div className="mt-[34px]">
+            <a
+              href={SITE_CONFIG.givingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-pill bg-gold-light px-[30px] py-[17px] font-ui text-[13px] font-bold uppercase tracking-[.12em] text-navy transition-colors duration-150 hover:bg-paper"
             >
-              {loadingId === monthlyTier.id ? "Redirecting…" : "Give Monthly"}
-            </Pill>
-            <Pill
-              variant="ghost"
-              onClick={() => startGiveCheckout(oneTimeTier.id, setLoadingId)}
-              disabled={loadingId !== null}
-            >
-              {loadingId === oneTimeTier.id ? "Redirecting…" : "One-Time Gift"}
-            </Pill>
+              Give Through the Parish ↗
+            </a>
+            <p className="mt-3 max-w-[420px] text-[13px] leading-[1.6] text-onnavy-dim">
+              Opens EasyTithe, the parish&apos;s secure giving page — the same one used for
+              Sunday collections. One-time or recurring, and you can direct your gift to campus
+              ministry there.
+            </p>
           </div>
         </div>
 
         <div className="flex flex-col gap-[14px]">
+          <div className="font-ui text-[10px] font-semibold uppercase tracking-[.2em] text-onnavy-dim">
+            Or give a set amount now
+          </div>
           {GIVE_TIERS.map((tier) => (
             <motion.button
               key={tier.id}

@@ -1,5 +1,6 @@
 import { StaggerGrid, StaggerItem } from "@/components/ui/StaggerGrid";
 import { NewHereFlow } from "@/components/home/NewHereFlow";
+import { Pill } from "@/components/ui/Pill";
 
 const STEPS = [
   {
@@ -61,6 +62,21 @@ export function NewHere() {
         </StaggerGrid>
 
         <NewHereFlow />
+
+        <div className="mx-auto mt-10 max-w-[560px] rounded-panel border border-navy/15 bg-navy/[.03] p-7 text-center">
+          <h3 className="font-display text-[20px] font-bold text-navy-deep">
+            Want someone to actually reach out?
+          </h3>
+          <p className="mx-auto mt-[10px] max-w-[400px] text-sm leading-[1.7] text-ink-warm">
+            Tell us what you&apos;re into and the student who runs it will get in touch. Takes about
+            a minute.
+          </p>
+          <div className="mt-6 flex justify-center">
+            <Pill href="/new-student" variant="orange" size="sm">
+              Register as a new student
+            </Pill>
+          </div>
+        </div>
       </div>
     </section>
   );
