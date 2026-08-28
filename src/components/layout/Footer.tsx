@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
 import { CampusSwitch } from "@/components/ui/CampusSwitch";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { SITE_CONFIG } from "@/content/site-config";
 
 export function Footer() {
@@ -49,24 +50,12 @@ export function Footer() {
               <a href={`tel:${SITE_CONFIG.phone.replace(/[^\d+]/g, "")}`} className="transition-colors hover:text-gold-light">
                 {SITE_CONFIG.phone}
               </a>
-              <a
-                href={SITE_CONFIG.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-gold-light"
-              >
-                {SITE_CONFIG.instagram}
-              </a>
-              {/* Facebook is confirmed inactive — listed, not emphasized. */}
-              <a
-                href={SITE_CONFIG.facebookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-onnavy-dim transition-colors hover:text-gold-light"
-              >
-                Facebook
-              </a>
             </div>
+            {/* Social is icons now rather than a text link per platform: it's
+                the row people scan for, and the marks are recognised faster
+                than the words. The handle still rides along in the title and
+                the visually-hidden label. */}
+            <SocialLinks className="mt-4" />
           </div>
 
           <div>
@@ -82,7 +71,7 @@ export function Footer() {
 
         <div className="my-[52px] h-px bg-white/13" />
 
-        <div className="flex flex-wrap items-center justify-between gap-6 font-ui text-xs text-[#6B7A94]">
+        <div className="flex flex-wrap items-center justify-between gap-6 font-ui text-xs text-onnavy-dim">
           <div>
             &copy; {new Date().getFullYear()} {SITE_CONFIG.siteName} &middot;{" "}
             {SITE_CONFIG.university}

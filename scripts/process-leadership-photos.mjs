@@ -34,15 +34,15 @@ const OUT_H = 1125;
  * names/roles live in the content module, not in the build script.
  */
 const SUBJECTS = [
-  { file: "alvaro.png", slug: "alvaro" },
-  { file: "gabe.png", slug: "gabe" },
-  { file: "sarah.png", slug: "sarah" },
-  { file: "marissa.png", slug: "marissa" },
   { file: "matthew.png", slug: "matthew" },
+  { file: "_MG_4495 copy.png", slug: "mariana" },
   { file: "paul.png", slug: "paul" },
-  { file: "_MG_4495 copy.png", slug: "unidentified" },
-  { file: "huh_jp2.jpg", slug: "huh" },
-  { file: "mary_sue_jp2.jpg", slug: "mary-sue" },
+  { file: "alvaro.png", slug: "alvaro" },
+  { file: "gabe.png", slug: "gabriel" },
+  { file: "huh_jp2.jpg", slug: "andrea" },
+  { file: "mary_sue_jp2.jpg", slug: "marysue" },
+  { file: "marissa.png", slug: "linda" },
+  { file: "sarah.png", slug: "sarah" },
 ];
 
 /**
@@ -62,6 +62,34 @@ const SUBJECTS = [
  * Override only if detection visibly fails on a particular frame.
  */
 const FOCAL_X_OVERRIDE = {};
+
+/**
+ * Correction from centred-body to centred-face, as a fraction of the finished
+ * card's width. Positive means the face currently sits right of centre.
+ *
+ * solveFocalX centres the subject's total mass, which is the right target for
+ * framing but not for a portrait: crossed arms, a thumbs-up, or a turned
+ * shoulder drag that centroid several percent away from the head, and a viewer
+ * only ever looks at the face. Automatic head-finding was tried and is not
+ * dependable on this set — where dark hair meets a dark plank seam the crown
+ * detection either misses the head entirely or latches onto the seam, which is
+ * worse than no correction at all.
+ *
+ * So these are measured off the rendered cards rather than detected. They only
+ * need revisiting if a photo is re-shot; a new photo with no entry here simply
+ * gets the body-centred crop, which is already close.
+ */
+const FACE_NUDGE = {
+  matthew: 0.069,
+  mariana: -0.065,
+  paul: 0.06,
+  alvaro: -0.031,
+  gabriel: -0.08,
+  andrea: -0.01,
+  marysue: 0.045,
+  linda: -0.05,
+  sarah: -0.02,
+};
 
 const MEASURE_WIDTH = 300;
 /** Band to measure: below the headroom, above where arms and hips spread out. */
@@ -160,8 +188,8 @@ async function solveFocalX(srcPath, width, height, ratio, focalY, zoom) {
  * sits high in frame; the phone frames are already tight and need almost none.
  */
 const FOCAL_Y = {
-  huh: 0.42,
-  "mary-sue": 0.42,
+  andrea: 0.42,
+  marysue: 0.42,
 };
 const DEFAULT_FOCAL_Y = 0.46;
 
@@ -172,8 +200,8 @@ const DEFAULT_FOCAL_Y = 0.46;
  * not. Values above 1 upscale on output — fine at these modest ratios.
  */
 const ZOOM = {
-  huh: 1.24,
-  "mary-sue": 1.24,
+  andrea: 1.24,
+  marysue: 1.24,
 };
 
 /** Baseline grade applied to every frame — a small, shared calming pass. */
@@ -187,8 +215,8 @@ const BASE_GRADE = { saturation: 0.92, brightness: 1.01, hue: 0 };
  * further, skin tone goes grey before the wall finishes matching.
  */
 const GRADE_OVERRIDES = {
-  huh: { saturation: 0.6, brightness: 0.94, hue: -6 },
-  "mary-sue": { saturation: 0.6, brightness: 0.94, hue: -6 },
+  andrea: { saturation: 0.6, brightness: 0.94, hue: -6 },
+  marysue: { saturation: 0.6, brightness: 0.94, hue: -6 },
 };
 
 /**
@@ -231,11 +259,16 @@ async function main() {
     const zoom = ZOOM[slug] ?? 1;
 
     const override = FOCAL_X_OVERRIDE[slug];
-    const solved =
+    let solved =
       override === undefined
         ? await solveFocalX(src, width, height, ratio, focalY, zoom)
         : { focal: override, center: null };
-    const focalX = solved.focal;
+    let focalX = solved.focal;
+
+    // Convert the face offset (a fraction of the output) into source
+    // coordinates before applying it, same conversion solveFocalX uses.
+    const probe = cropWindow(width, height, ratio, focalX, focalY, zoom);
+    focalX += (FACE_NUDGE[slug] ?? 0) * (probe.width / width);
 
     const region = cropWindow(width, height, ratio, focalX, focalY, zoom);
     const grade = { ...BASE_GRADE, ...(GRADE_OVERRIDES[slug] ?? {}) };
@@ -247,12 +280,15 @@ async function main() {
       .webp({ quality: 82 })
       .toFile(path.join(OUT_DIR, `${slug}.webp`));
 
-    // `subject` is where the person actually ended up in the finished card;
-    // anything not close to 0.500 means centring failed for that frame.
+    // `subject` is where the person's mass ended up. A frame with a FACE_NUDGE
+    // is *meant* to land off 0.500 by roughly that much — the body shifts so
+    // the face doesn't — so only an unnudged frame drifting here is a fault.
     const landed =
       solved.center === null
         ? "override"
-        : `subject=${solved.center.toFixed(3)}${Math.abs(solved.center - 0.5) < 0.01 ? "" : "  <-- OFF-CENTRE"}`;
+        : `subject=${solved.center.toFixed(3)}${
+            Math.abs(solved.center - 0.5) < 0.01 || FACE_NUDGE[slug] ? "" : "  <-- OFF-CENTRE"
+          }${FACE_NUDGE[slug] ? `  face-nudge=${FACE_NUDGE[slug] > 0 ? "+" : ""}${FACE_NUDGE[slug]}` : ""}`;
     console.log(
       `  ok    ${slug.padEnd(13)} focalX=${focalX.toFixed(3)}  ${landed}  sat=${grade.saturation}`
     );

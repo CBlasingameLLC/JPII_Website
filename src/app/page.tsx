@@ -6,7 +6,6 @@ import { DailyLiturgy } from "@/components/home/DailyLiturgy";
 import { TodayInHistory } from "@/components/home/TodayInHistory";
 import { ThisWeek } from "@/components/home/ThisWeek";
 import { Events } from "@/components/home/Events";
-import { GetInvolved } from "@/components/home/GetInvolved";
 import { StudentLeadership } from "@/components/home/StudentLeadership";
 import { About } from "@/components/home/About";
 import { Staff } from "@/components/home/Staff";
@@ -48,9 +47,6 @@ export default function HomePage() {
       </MotionSection>
       <MotionSection>
         <Events />
-      </MotionSection>
-      <MotionSection>
-        <GetInvolved />
       </MotionSection>
       <MotionSection>
         <StudentLeadership />

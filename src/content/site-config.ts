@@ -11,11 +11,17 @@ export const SITE_CONFIG = {
   shortName: "JPII",
   tagline: "Be Disciples, Make Disciples.",
   university: "The University of Texas at Tyler",
+  /**
+   * Both campuses, for anywhere the ministry is introduced. JPII serves UT
+   * Tyler and TJC; `university` stays the single-school string for places
+   * where the longer form won't fit.
+   */
+  universities: "The University of Texas at Tyler & Tyler Junior College",
 
   heroType: "varsity" as "varsity" | "sacred",
   headerTheme: "dark" as "dark" | "light",
 
-  ministryCenterName: "◆ Ministry Center Name",
+  ministryCenterName: "John Paul the Great Catholic Campus Ministry",
   streetAddress: "2603 Old Omen Road",
   city: "Tyler",
   state: "TX",
@@ -29,7 +35,7 @@ export const SITE_CONFIG = {
   // not treated as a primary channel anywhere in the UI.
   facebookUrl: "https://www.facebook.com/tylercatholic/",
 
-  venueName: "◆ venue name",
+  venueName: "John Paul the Great Catholic Campus Ministry",
 
   stats: {
     studentsPerWeek: "◆",

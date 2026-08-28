@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { href: "/#week", label: "Mass & Confession" },
   { href: "/new-student", label: "New Student" },
   { href: "/#events", label: "Events" },
-  { href: "/#involved", label: "Get Involved" },
   { href: "/#about", label: "About" },
 ];
 
