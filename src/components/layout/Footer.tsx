@@ -31,7 +31,11 @@ export function Footer() {
               Visit
             </div>
             <div className="mt-4 text-sm leading-[1.85] text-onnavy">
-              <div className="font-bold text-gold-light">{SITE_CONFIG.ministryCenterName}</div>
+              {/* text-balance: the name is long enough to wrap in this column, and
+                  the default break left "Ministry" alone on the last line. */}
+              <div className="text-balance font-bold text-gold-light">
+                {SITE_CONFIG.ministryCenterName}
+              </div>
               <div>{SITE_CONFIG.streetAddress}</div>
               <div>
                 {SITE_CONFIG.city}, {SITE_CONFIG.state} {SITE_CONFIG.zip}
@@ -44,10 +48,10 @@ export function Footer() {
               Contact
             </div>
             <div className="mt-4 flex flex-col gap-1 text-sm leading-[1.85] text-onnavy">
-              <a href={`mailto:${SITE_CONFIG.email}`} className="transition-colors hover:text-gold-light">
+              <a href={`mailto:${SITE_CONFIG.email}`} className="text-onnavy transition-colors hover:text-gold-light">
                 {SITE_CONFIG.email}
               </a>
-              <a href={`tel:${SITE_CONFIG.phone.replace(/[^\d+]/g, "")}`} className="transition-colors hover:text-gold-light">
+              <a href={`tel:${SITE_CONFIG.phone.replace(/[^\d+]/g, "")}`} className="text-onnavy transition-colors hover:text-gold-light">
                 {SITE_CONFIG.phone}
               </a>
             </div>

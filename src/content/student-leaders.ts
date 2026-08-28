@@ -49,10 +49,8 @@ export type StudentLeader = {
  * Names, roles, and saints are confirmed. Bios, fun facts, hometowns, majors,
  * and verses are not — every ◆ below still needs a real answer from the team.
  *
- * One open item: the ministry supplied nine roles and eight names. Alvaro is
- * the only photo not reassigned and Liturgy the only role left unclaimed, so
- * he is placed there by elimination — confirmed with the ministry as the
- * intended reading. His surname and saint are still outstanding.
+ * Andrea and Linda share a Confirmation saint. Checked with the ministry —
+ * that is correct, not a transcription slip.
  */
 export const STUDENT_LEADERS: StudentLeader[] = [
   {
@@ -99,12 +97,12 @@ export const STUDENT_LEADERS: StudentLeader[] = [
   },
   {
     slug: "alvaro",
-    name: "◆ Alvaro",
+    name: "Alvaro Gonzalez",
     role: "Liturgy",
+    saint: "St. Anthony the Great",
     bio: "◆ Two sentences on who he is and what he does here.",
     longBio: "◆ A longer paragraph — how he found the Center, what he'd tell a nervous freshman, what he's studying.",
     facets: [
-      { label: "Confirmation Saint", value: "◆" },
       { label: "Fun Fact", value: "◆" },
       { label: "Hometown", value: "◆" },
       { label: "Major", value: "◆" },

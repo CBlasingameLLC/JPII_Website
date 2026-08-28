@@ -12,11 +12,11 @@ export const SITE_CONFIG = {
   tagline: "Be Disciples, Make Disciples.",
   university: "The University of Texas at Tyler",
   /**
-   * Both campuses, for anywhere the ministry is introduced. JPII serves UT
-   * Tyler and TJC; `university` stays the single-school string for places
-   * where the longer form won't fit.
+   * The second campus, kept as its own field rather than joined onto
+   * `university`: run together they make a line long enough to wrap badly
+   * wherever they appear, so every use sets them on their own lines.
    */
-  universities: "The University of Texas at Tyler & Tyler Junior College",
+  partnerSchool: "Tyler Junior College",
 
   heroType: "varsity" as "varsity" | "sacred",
   headerTheme: "dark" as "dark" | "light",

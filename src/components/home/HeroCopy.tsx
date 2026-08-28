@@ -9,13 +9,15 @@ import { SITE_CONFIG } from "@/content/site-config";
 export function HeroCopy() {
   return (
     <motion.div className="reveal-pin" initial="hidden" animate="visible" variants={heroStagger}>
-      {/* Both schools. The rule is flex-none and the text wraps rather than
-          shrinking the rule away, since the pair is long enough to run onto a
-          second line on a phone. */}
+      {/* Both schools, stacked. Run together on one line they wrap mid-name at
+          almost every width; on their own lines they read as a list. The rule
+          sits against the first line rather than centring on the block. */}
       <motion.div variants={fadeUpSmall} className="reveal-pin flex items-start gap-[13px]">
         <span className="mt-[7px] h-px w-11 flex-none bg-gold-light" />
-        <span className="max-w-[420px] font-ui text-[11px] font-semibold uppercase leading-[1.6] tracking-[.22em] text-gold-light">
-          {SITE_CONFIG.universities}
+        <span className="font-ui text-[11px] font-semibold uppercase leading-[1.7] tracking-[.24em] text-gold-light">
+          {SITE_CONFIG.university}
+          <br />
+          {SITE_CONFIG.partnerSchool}
         </span>
       </motion.div>
 

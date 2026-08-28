@@ -80,13 +80,13 @@ const FOCAL_X_OVERRIDE = {};
  * gets the body-centred crop, which is already close.
  */
 const FACE_NUDGE = {
-  matthew: 0.069,
+  matthew: 0.234,
   mariana: -0.065,
-  paul: 0.06,
+  paul: 0,
   alvaro: -0.031,
   gabriel: -0.08,
-  andrea: -0.01,
-  marysue: 0.045,
+  andrea: 0.025,
+  marysue: 0.075,
   linda: -0.05,
   sarah: -0.02,
 };
