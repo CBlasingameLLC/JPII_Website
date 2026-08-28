@@ -17,6 +17,20 @@ import { ScrollRose } from "@/components/home/ScrollRose";
 import { MotionSection } from "@/components/ui/MotionSection";
 import { SITE_CONFIG } from "@/content/site-config";
 
+/**
+ * The homepage renders three things off the current date — the liturgical
+ * band, the history strip, and the Mass card's server-side starting state —
+ * so it cannot be a build-time static page. Without this it was prerendered
+ * once at deploy and kept serving that day's date indefinitely, which is why
+ * the history strip appeared empty in production while working locally.
+ *
+ * Half an hour is short enough that the date is never meaningfully wrong and
+ * long enough that this stays a cached page rather than a per-request render.
+ * The upstream liturgical fetches keep their own day-long cache regardless
+ * (see lib/liturgy-feed), so this does not add traffic to them.
+ */
+export const revalidate = 1800;
+
 export default function HomePage() {
   return (
     <>

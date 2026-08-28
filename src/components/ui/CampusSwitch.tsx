@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { cn } from "@/lib/cn";
 
 export type Campus = "uttyler" | "tjc";
@@ -35,6 +35,26 @@ function getServerSnapshot(): Campus {
   return "uttyler";
 }
 
+/**
+ * Repoints <meta name="theme-color"> at whatever the header is actually
+ * painted, which is what a phone uses to colour the strip behind its camera
+ * and clock in an installed PWA. It was pinned to UT Tyler navy, so switching
+ * to TJC left a navy band above a charcoal header, and the light-header routes
+ * carried a navy band above cream — both read as a rendering fault rather than
+ * a theme.
+ *
+ * Reading the rendered header rather than mapping route to colour means this
+ * stays correct for any future theme or page without another lookup table to
+ * keep in sync.
+ */
+function syncThemeColor() {
+  const header = document.querySelector("header");
+  const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+  if (!header || !meta) return;
+  const color = window.getComputedStyle(header).backgroundColor;
+  if (color && !color.startsWith("rgba(0, 0, 0, 0")) meta.content = color;
+}
+
 function selectCampus(campus: Campus) {
   if (campus === "uttyler") {
     delete document.documentElement.dataset.campus;
@@ -48,6 +68,7 @@ function selectCampus(campus: Campus) {
     // which is a fine outcome for a preference this small.
   }
   window.dispatchEvent(new Event(CHANGE_EVENT));
+  syncThemeColor();
 }
 
 /**
@@ -56,6 +77,10 @@ function selectCampus(campus: Campus) {
  */
 export function CampusSwitch({ className }: { className?: string }) {
   const active = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  // Also on mount: the pre-paint inline script may have restored TJC from a
+  // previous visit, in which case nothing has gone through selectCampus.
+  useEffect(syncThemeColor, [active]);
 
   return (
     <div

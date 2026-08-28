@@ -4,12 +4,19 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { Pill } from "@/components/ui/Pill";
-import { INTERESTS, CLASS_YEARS, FAITH_STATUS } from "@/content/interests";
+import { INTERESTS, CLASS_YEARS, FAITH_STATUS, SCHOOLS } from "@/content/interests";
 import { SITE_CONFIG } from "@/content/site-config";
 
 type Status = "idle" | "submitting" | "done" | "unavailable" | "error";
 
 const STEPS = ["You", "Your year", "Interests", "Send"];
+/** Paired with STEPS on the intro panel so the length of the form is visible before it starts. */
+const STEP_BLURBS = [
+  "Name and how to reach you.",
+  "School, year, where you're at.",
+  "The part that decides who calls.",
+  "Anything else, then send.",
+];
 
 const inputClass =
   "w-full rounded-tile border border-border bg-paper px-4 py-3 text-[15px] text-ink placeholder:text-muted-light focus:border-orange focus:outline-none";
@@ -23,6 +30,7 @@ const EMPTY = {
   lastName: "",
   email: "",
   phone: "",
+  school: "",
   classYear: "",
   major: "",
   faithStatus: "",
@@ -81,6 +89,10 @@ function ChoiceRow({
 }
 
 export function RegistrationFlow() {
+  // The page used to open straight onto step 1's name fields, which lands as
+  // a demand before anything has been explained. This gate costs one tap and
+  // turns the arrival into an answer to "what is this and what happens to it".
+  const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0);
   const [form, setForm] = useState(EMPTY);
   const [error, setError] = useState<string | null>(null);
@@ -110,6 +122,7 @@ export function RegistrationFlow() {
       }
     }
     if (step === 1) {
+      if (!form.school) return setError("Which school are you at?");
       if (!form.classYear) return setError("Pick your year so we know who to introduce you to.");
       if (!form.faithStatus) return setError("Pick whichever of these is closest.");
     }
@@ -189,6 +202,47 @@ export function RegistrationFlow() {
           </Pill>
         </div>
       </div>
+    );
+  }
+
+  if (!started) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="rounded-panel border border-border bg-paper p-7 sm:p-10"
+      >
+        <h2 className="font-display text-[26px] font-bold leading-[1.2] text-navy-deep sm:text-[30px]">
+          Here&apos;s what this actually does
+        </h2>
+        <p className="mt-4 max-w-[520px] text-[16px] leading-[1.7] text-ink-warm">
+          You tell us what you&apos;re interested in. We pass your name to the student who runs that
+          thing, and they get in touch — usually a text, usually within the week. That&apos;s the
+          whole mechanism.
+        </p>
+
+        <ol className="mt-8 flex flex-col gap-px overflow-hidden rounded-tile border border-border-soft bg-border-soft">
+          {STEPS.map((label, i) => (
+            <li key={label} className="flex items-center gap-4 bg-ivory px-5 py-4">
+              <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-navy font-ui text-[12px] font-bold text-gold-light tabular-nums">
+                {i + 1}
+              </span>
+              <span className="font-display text-[15px] font-bold text-navy-deep">{label}</span>
+              <span className="text-[13.5px] leading-[1.5] text-ink-warm">{STEP_BLURBS[i]}</span>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <Pill onClick={() => setStarted(true)} variant="orange">
+            Start
+          </Pill>
+          <span className="font-ui text-[12.5px] text-muted">
+            About a minute. Nothing is public, and nobody is added to a list.
+          </span>
+        </div>
+      </motion.div>
     );
   }
 
@@ -276,6 +330,13 @@ export function RegistrationFlow() {
             <h3 className="font-display text-[22px] font-bold text-navy-deep">
               Where are you at right now?
             </h3>
+            <Field label="School">
+              <ChoiceRow
+                options={SCHOOLS}
+                value={form.school}
+                onSelect={(v) => set("school", v)}
+              />
+            </Field>
             <Field label="Year">
               <ChoiceRow
                 options={CLASS_YEARS}

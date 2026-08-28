@@ -14,7 +14,7 @@ export function Location() {
   return (
     <section
       id="location"
-      className="bg-[linear-gradient(180deg,#04162F,#061E45)] px-5 py-16 sm:px-gutter lg:py-section-y"
+      className="bg-[image:linear-gradient(180deg,var(--color-navy-black),var(--color-navy-deep))] px-5 py-16 sm:px-gutter lg:py-section-y"
     >
       <div className="mx-auto grid max-w-site grid-cols-1 gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-16">
         <div>
@@ -23,8 +23,8 @@ export function Location() {
             It&apos;s the building with the cross
           </h2>
           <p className="mt-5 max-w-[460px] text-[17px] leading-[1.7] text-onnavy">
-            Five minutes from campus, on Old Omen Road. Park anywhere in the lot — nobody gets
-            towed, and the door on the front is the right one.
+            Under half a mile from UT Tyler, about two from TJC. Park anywhere in the lot — nobody
+            gets towed, and the door on the front is the right one.
           </p>
 
           <address className="mt-8 not-italic">

@@ -30,7 +30,7 @@ export function Give() {
   return (
     <section
       id="give"
-      className="bg-[linear-gradient(180deg,#061E45,#0A2A5E)] px-5 py-16 sm:px-gutter lg:py-section-y"
+      className="bg-[image:linear-gradient(180deg,var(--color-navy-deep),var(--color-navy-lift))] px-5 py-16 sm:px-gutter lg:py-section-y"
     >
       <div className="mx-auto grid max-w-site grid-cols-1 items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
         <div>

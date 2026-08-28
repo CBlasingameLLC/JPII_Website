@@ -74,6 +74,13 @@ export const INTERESTS: Interest[] = [
   },
 ];
 
+/**
+ * JPII serves both campuses, so the form asks rather than assuming UT Tyler.
+ * Kept as its own list because it drives two things at once: who follows up,
+ * and which campus accent the site offers the student (see ui/CampusSwitch).
+ */
+export const SCHOOLS = ["UT Tyler", "TJC", "Neither / both"] as const;
+
 export const CLASS_YEARS = [
   "Freshman",
   "Sophomore",

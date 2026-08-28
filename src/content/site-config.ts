@@ -52,6 +52,51 @@ export const SITE_CONFIG = {
 } as const;
 
 /**
+ * Reference points shown alongside the Center on the map.
+ *
+ * The Center's own address means nothing to someone who has been in Tyler for
+ * a week — "is this walkable from my dorm" is the actual question — so both
+ * campuses are plotted with it. All three sets of coordinates are geocoded
+ * from OpenStreetMap Nominatim; distances are computed at render time from
+ * these, not written down, so they cannot drift out of sync.
+ */
+export type MapPlace = {
+  id: string;
+  name: string;
+  short: string;
+  lat: number;
+  lng: number;
+  kind: "center" | "campus";
+};
+
+export const MAP_PLACES: MapPlace[] = [
+  {
+    id: "center",
+    name: SITE_CONFIG.siteName,
+    short: "The Center",
+    lat: SITE_CONFIG.coords.lat,
+    lng: SITE_CONFIG.coords.lng,
+    kind: "center",
+  },
+  {
+    id: "uttyler",
+    name: "The University of Texas at Tyler",
+    short: "UT Tyler",
+    lat: 32.3163078,
+    lng: -95.2536994,
+    kind: "campus",
+  },
+  {
+    id: "tjc",
+    name: "Tyler Junior College",
+    short: "TJC",
+    lat: 32.3349608,
+    lng: -95.2824611,
+    kind: "campus",
+  },
+];
+
+/**
  * Weekly windows behind the Next Mass card's countdown, "Happening Now"
  * detection, and the Confession/Adoration bullets. Days use Date.getDay()
  * numbering (0 = Sunday); see WeeklyWindow in types/schedule.ts.

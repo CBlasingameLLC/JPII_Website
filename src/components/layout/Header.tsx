@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
 import { Pill } from "@/components/ui/Pill";
 import { MobileNav } from "@/components/layout/MobileNav";
@@ -17,50 +16,59 @@ const NAV_LINKS = [
   { href: "/#about", label: "About" },
 ];
 
-const TALL_HEIGHT = 88;
-const SHORT_HEIGHT = 64;
 const SCROLL_THRESHOLD = 48;
 
 type HeaderProps = {
   theme?: "dark" | "light";
 };
 
-/** Sticky site header. "Mass & Confession" is first in nav order on purpose — per the design handoff, it's the most-wanted link. */
+/**
+ * Sticky site header. "Mass & Confession" is first in nav order on purpose —
+ * per the design handoff, it's the most-wanted link.
+ *
+ * The shrink-on-scroll is CSS driven off `data-scrolled` rather than an
+ * animated height. Animating height on a sticky element reflows everything
+ * below it for the length of the transition, which on a phone lands as a
+ * judder at the top of every scroll; the CSS version is also restricted to
+ * desktop, where the header is tall enough for the shrink to be worth
+ * anything. See the `.site-header` rules in globals.css.
+ */
 export function Header({ theme = "dark" }: HeaderProps) {
   const isDark = theme === "dark";
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let frame = 0;
     function onScroll() {
-      setScrolled(window.scrollY > SCROLL_THRESHOLD);
+      // Coalesced into one read per frame: scroll fires far faster than the
+      // page can paint, and each handler reading scrollY is a layout read.
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        setScrolled(window.scrollY > SCROLL_THRESHOLD);
+      });
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
     <header
+      data-scrolled={scrolled}
       className={cn(
-        "sticky top-0 z-50 relative",
+        "site-header sticky top-0 z-50 relative",
         isDark ? "bg-navy border-b border-white/14" : "bg-paper border-b-2 border-navy"
       )}
     >
-      <motion.div
-        className="mx-auto flex max-w-site items-center justify-between gap-10 overflow-hidden px-5 sm:px-gutter"
-        initial={false}
-        animate={{ height: scrolled ? SHORT_HEIGHT : TALL_HEIGHT }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-      >
+      <div className="header-inner mx-auto flex max-w-site items-center justify-between gap-10 overflow-hidden px-5 sm:px-gutter">
         <Link href="/#top" className="flex items-center">
-          <motion.div
-            initial={false}
-            animate={{ scale: scrolled ? 0.8 : 1 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            style={{ transformOrigin: "left center" }}
-          >
+          <div className="header-logo">
             <Logo variant={isDark ? "header-dark" : "header-light"} />
-          </motion.div>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -92,7 +100,7 @@ export function Header({ theme = "dark" }: HeaderProps) {
           links={[...NAV_LINKS, { href: "/#give", label: "Give" }]}
           theme={theme}
         />
-      </motion.div>
+      </div>
     </header>
   );
 }

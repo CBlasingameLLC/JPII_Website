@@ -38,7 +38,7 @@ const HEADER_STYLES: Record<
   },
   "header-light": {
     crossColor: "#C8A24B",
-    nameColor: "#003876",
+    nameColor: "var(--color-navy)",
     accentColor: "#C8A24B",
     ministryColor: "#6B7A94",
     crossWidth: 26,

@@ -75,11 +75,42 @@
   --shadow-lift: 0 30px 60px -40px rgba(6, 30, 69, 0.5);
 }
 
+/* Dark-ground gradients, hoisted out of the components that used to hardcode
+   them. They were written as literal rgba() in class strings, which meant the
+   campus theme swapped every token around them and left the hero and the two
+   gradient sections stubbornly navy. As variables they follow the theme, and
+   each stop can still be tuned per campus rather than being derived. */
+:root {
+  --hero-vignette: radial-gradient(
+    120% 100% at 50% 45%,
+    transparent 0%,
+    rgba(10, 42, 94, 0.5) 65%,
+    rgba(4, 22, 47, 0.85) 100%
+  );
+  --hero-scrim: linear-gradient(
+    180deg,
+    rgba(6, 30, 69, 0.72) 0%,
+    rgba(6, 30, 69, 0.42) 42%,
+    rgba(6, 30, 69, 0.92) 100%
+  );
+}
+
 @layer base {
+  /* The ground colour has to live on <html> as well as <body>: the area the
+     browser paints outside the body box — rubber-band overscroll, the safe
+     area behind a phone's status bar — comes from <html>, and defaulting it
+     to white is what flashes at the top and bottom of a scroll. */
+  html {
+    background: var(--color-ivory);
+  }
+
   body {
     background: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-ui);
+    /* Stops a scroll that runs off the end of the page from chaining to the
+       browser/PWA shell and triggering pull-to-refresh mid-flick. */
+    overscroll-behavior-y: none;
   }
 
   h1 {
@@ -106,6 +137,62 @@
 
   [class*="bg-navy"] :focus-visible {
     outline-color: var(--color-gold-light);
+  }
+}
+
+/* Site header.
+
+   padding-top carries the phone's status-bar inset so the header's own
+   background paints up behind the camera cutout, rather than iOS filling that
+   strip with a colour of its own choosing. Pairs with viewportFit "cover" and
+   appleWebApp.statusBarStyle in app/layout.tsx.
+
+   The shrink is CSS rather than an animated height (see components/layout/
+   Header.tsx) and only exists on desktop: the mobile header is already at its
+   compact height, so shrinking it would reflow the page for no gain. */
+.site-header {
+  padding-top: env(safe-area-inset-top);
+}
+
+.site-header .header-inner {
+  height: 64px;
+}
+
+.site-header .header-logo {
+  transform-origin: left center;
+}
+
+@media (min-width: 1024px) {
+  .site-header .header-inner {
+    height: 88px;
+    transition: height 250ms ease-out;
+  }
+
+  .site-header[data-scrolled="true"] .header-inner {
+    height: 64px;
+  }
+
+  .site-header .header-logo {
+    transition: transform 250ms ease-out;
+  }
+
+  .site-header[data-scrolled="true"] .header-logo {
+    transform: scale(0.8);
+  }
+}
+
+/* Reveal animations are serialised into the server HTML by Framer, which means
+   every wrapped element arrives at opacity 0 and stays there until hydration
+   runs. On a phone that is the difference between a page that appears and a
+   page that assembles itself in front of you, so below the desktop breakpoint
+   these are pinned to their finished state and the content is simply there on
+   first paint. The animation still runs underneath; only its painted result is
+   overridden, which is why !important is the right tool rather than a prop —
+   Framer writes these as inline styles. */
+@media (max-width: 767px) {
+  .reveal-pin {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -227,13 +314,16 @@
 
 /* Leaflet map, themed to the site.
 
-   CARTO's dark basemap is neutral grey, and hue-rotate does nothing to a
-   desaturated image — so sepia() is applied first purely to give the tiles a
-   hue that can then be rotated round to the brand navy. Saturation and
-   brightness are held down so the map stays a quiet ground for the gold
-   marker rather than competing with it. */
+   The tiles arrive as OpenStreetMap's standard style — light, colourful, and
+   nothing like this page. invert() darkens it; grayscale() first throws away
+   the per-feature colours (green parks, yellow highways) that would otherwise
+   invert into a confetti of wrong hues. Only then is there a neutral image to
+   tint, which is what the sepia/hue-rotate pair does — sepia purely to give
+   the pixels a hue that hue-rotate can carry round to the brand navy, since
+   rotating the hue of a desaturated image does nothing. */
 .jpii-map .leaflet-tile-pane {
-  filter: sepia(1) hue-rotate(178deg) saturate(1.5) brightness(0.82) contrast(1.06);
+  filter: invert(1) grayscale(1) brightness(0.9) contrast(1.05) sepia(1) hue-rotate(178deg)
+    saturate(1.6);
 }
 
 .jpii-map.leaflet-container {
@@ -261,8 +351,10 @@
   background: var(--color-navy-lift);
 }
 
-/* Marker: a gold dot with a slow outward pulse, so the eye finds the Center
-   before it reads any street name. */
+/* Markers. The Center is a gold dot with a slow outward pulse, so the eye
+   finds it before it reads any street name; the two campuses are quieter
+   outlined dots carrying their own labels, present for reference and
+   deliberately not competing for attention. */
 .jpii-marker-dot,
 .jpii-marker-pulse {
   position: absolute;
@@ -279,6 +371,28 @@
   inset: 0;
   border: 1.5px solid var(--color-gold-light);
   animation: marker-pulse 2.8s ease-out infinite;
+}
+
+.jpii-marker--campus .jpii-marker-dot {
+  inset: 7px;
+  background: var(--color-onnavy);
+  box-shadow: 0 0 0 2px rgba(4, 22, 47, 0.9);
+}
+
+.jpii-marker-label {
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--color-onnavy);
+  text-shadow:
+    0 0 4px rgba(4, 22, 47, 0.95),
+    0 0 10px rgba(4, 22, 47, 0.8);
 }
 
 @keyframes marker-pulse {
@@ -323,6 +437,45 @@
   --color-orange-ink: #7a5d00;
   --color-orange-on: #121212;
   --color-orange-pale: #ffe9a3;
+
+  /* TJC is black and gold, so the dark grounds go with the accent rather than
+     staying navy underneath it. The whole navy ramp shifts to a near-black one
+     in the same order (black < deep < base < lift), so every surface that
+     referenced a navy token lands correctly without touching a component.
+     Not pure #000 at any step: flat black against the warm ivory neutrals
+     reads as a rendering error rather than a choice. */
+  --color-navy-black: #0a0a0b;
+  --color-navy-deep: #17171a;
+  --color-navy: #26262b;
+  --color-navy-lift: #3a3a41;
+
+  /* The on-navy text colours carry a deliberate blue cast that turns muddy
+     over charcoal — neutralised, keeping the same lightness. */
+  --color-onnavy: #d7d7d3;
+  --color-onnavy-dim: #a0a09a;
+
+  /* Elevation follows the ground: navy-tinted shadows under black look brown. */
+  --shadow-card: 0 22px 44px -30px rgba(0, 0, 0, 0.55);
+  --shadow-lift: 0 30px 60px -40px rgba(0, 0, 0, 0.65);
+
+  --hero-vignette: radial-gradient(
+    120% 100% at 50% 45%,
+    transparent 0%,
+    rgba(58, 58, 65, 0.5) 65%,
+    rgba(10, 10, 11, 0.88) 100%
+  );
+  --hero-scrim: linear-gradient(
+    180deg,
+    rgba(18, 18, 21, 0.74) 0%,
+    rgba(18, 18, 21, 0.44) 42%,
+    rgba(10, 10, 11, 0.93) 100%
+  );
+}
+
+/* The map is tinted toward navy by hue-rotate; with no navy to match, TJC
+   drops the tint and leaves the tiles neutral black. */
+:root[data-campus="tjc"] .jpii-map .leaflet-tile-pane {
+  filter: invert(1) grayscale(1) brightness(0.82) contrast(1.08);
 }
 
 /* Tailwind emits its utilities inside @layer utilities; these unlayered rules
@@ -378,4 +531,55 @@
 .campus-switch button[aria-pressed="true"] {
   background: var(--color-orange);
   color: var(--color-orange-on);
+}
+
+/* Continuous effects, restricted to pointer devices with room for them.
+
+   Deliberately at the end of this file: these override .shine-border /
+   .glass-* declared above at equal specificity, so source order is what
+   decides. Moving this block earlier silently stops it working.
+
+   Each of these repaints every frame for as long as the page is open: the
+   shine ring is a conic gradient (not compositable, so it is a full CPU
+   repaint per frame), the caustics animate a blurred layer, and the shimmer
+   sweeps across it. Stacked under a backdrop-filtered card inside a 3D
+   transform, that is the combination that tears while scrolling. They are
+   worth the cost on a desktop where the card is large and the pointer is
+   already driving the tilt; on a phone they are invisible work. */
+@media (max-width: 767px) {
+  .shine-border::before {
+    animation: none;
+  }
+
+  .glass-flow {
+    animation: none;
+  }
+
+  /* Frozen, the sweep is a static diagonal band across the card face — it
+     reads as a smudge rather than a highlight, so it goes entirely. */
+  .glass-shimmer {
+    display: none;
+  }
+
+}
+
+/* The Mass card's glass surface.
+
+   Defined here rather than as bg-* + backdrop-blur-* utilities on the element
+   so there is one place that decides it. backdrop-filter forces everything
+   behind the card to be re-sampled on every frame it moves, and this card sits
+   inside a 3D-transformed tilt wrapper, so on a phone it is re-sampled
+   constantly. Below the breakpoint the blur is simply not applied and the
+   ground is made more opaque to compensate — at that size the two are almost
+   indistinguishable. */
+.glass-panel {
+  background-color: color-mix(in srgb, var(--color-navy-deep) 88%, transparent);
+}
+
+@media (min-width: 768px) {
+  .glass-panel {
+    background-color: color-mix(in srgb, var(--color-navy-deep) 60%, transparent);
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
+  }
 }

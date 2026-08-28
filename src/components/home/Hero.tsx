@@ -22,9 +22,9 @@ export function Hero() {
         <HeroSlideshow alt="Students at Mass or a community night" />
       </div>
       {/* Circular vignette so a photo blends into the navy theme at the edges rather than reading as a hard-edged rectangle dropped on the page. */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_45%,transparent_0%,rgba(10,42,94,.5)_65%,rgba(4,22,47,.85)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[image:var(--hero-vignette)]" />
       {/* Linear fade guarantees text legibility at the bottom regardless of what the photo/vignette above look like. */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(6,30,69,.72)_0%,rgba(6,30,69,.42)_42%,rgba(6,30,69,.92)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[image:var(--hero-scrim)]" />
 
       <div className="relative mx-auto grid w-full max-w-site grid-cols-1 gap-10 px-5 pb-12 pt-20 sm:px-gutter lg:grid-cols-[1.35fr_1fr] lg:gap-14 lg:pb-16 lg:pt-24">
         <HeroCopy />
