@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { INTERESTS, CLASS_YEARS, FAITH_STATUS } from "@/content/interests";
+import { INTERESTS, CLASS_YEARS, FAITH_STATUS, SCHOOLS } from "@/content/interests";
 
 const interestIds = INTERESTS.map((i) => i.id);
 
@@ -9,6 +9,7 @@ const RegistrationSchema = z.object({
   lastName: z.string().trim().min(1, "Last name is required").max(80),
   email: z.string().trim().email("That email doesn't look right").max(160),
   phone: z.string().trim().max(40).optional().or(z.literal("")),
+  school: z.enum(SCHOOLS),
   classYear: z.enum(CLASS_YEARS),
   major: z.string().trim().max(120).optional().or(z.literal("")),
   faithStatus: z.enum(FAITH_STATUS),
@@ -78,6 +79,7 @@ export async function POST(request: Request) {
     lastName: data.lastName,
     email: data.email,
     phone: data.phone ?? "",
+    school: data.school,
     classYear: data.classYear,
     major: data.major ?? "",
     faithStatus: data.faithStatus,
