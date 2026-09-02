@@ -14,7 +14,9 @@ import { Location } from "@/components/home/Location";
 import { Give } from "@/components/home/Give";
 import { ScrollRose } from "@/components/home/ScrollRose";
 import { MotionSection } from "@/components/ui/MotionSection";
+import { DailyRefresh } from "@/components/ui/DailyRefresh";
 import { SITE_CONFIG } from "@/content/site-config";
+import { chicagoDateKey, getChicagoNow } from "@/lib/time";
 
 /**
  * The homepage renders three things off the current date — the liturgical
@@ -33,6 +35,10 @@ export const revalidate = 1800;
 export default function HomePage() {
   return (
     <>
+      {/* Watches for the Tyler-local date rolling over and re-fetches, so a
+          tab left open overnight stops showing yesterday's liturgy and
+          history. Renders nothing. */}
+      <DailyRefresh renderedFor={chicagoDateKey(getChicagoNow())} />
       <ScrollRose />
       <Header theme={SITE_CONFIG.headerTheme} />
       <Hero />

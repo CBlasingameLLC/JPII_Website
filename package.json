@@ -9,7 +9,8 @@
     "lint": "eslint",
     "sync:printful": "tsx scripts/sync-printful.ts",
     "generate:icons": "node scripts/generate-pwa-icons.mjs",
-    "photos:leadership": "node scripts/process-leadership-photos.mjs"
+    "photos:leadership": "node scripts/process-leadership-photos.mjs",
+    "photos:staff": "node scripts/process-staff-photos.mjs"
   },
   "dependencies": {
     "@stripe/stripe-js": "^9.12.1",

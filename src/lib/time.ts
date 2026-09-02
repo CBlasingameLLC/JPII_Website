@@ -127,8 +127,9 @@ export function formatOccurrenceIn(target: Date, chicagoNow: Date): string {
   return `starting in ${mins} min`;
 }
 
-/** Chicago-local YYYY-MM-DD, for comparing against break date ranges. */
-function chicagoDateKey(d: Date): string {
+/** Chicago-local YYYY-MM-DD. Used to compare against break date ranges, and
+ * as the identity of "which day is this page showing" for DailyRefresh. */
+export function chicagoDateKey(d: Date): string {
   const y = d.getFullYear();
   const m = (d.getMonth() + 1).toString().padStart(2, "0");
   const day = d.getDate().toString().padStart(2, "0");
