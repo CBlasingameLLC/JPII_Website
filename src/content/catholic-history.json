@@ -73,61 +73,64 @@
     "04-27": [
       {
         "year": 2014,
-        "text": "John XXIII and John Paul II were canonized together by Pope Francis, with Benedict XVI also present — two living popes and two new saints in one morning."
-      }
-    ],
-    "05-20": [
-      {
-        "year": 325,
-        "text": "The First Council of Nicaea opened. Its work is the reason the Creed said at Mass on Sunday exists in the form it does."
+        "text": "John XXIII and John Paul II were canonized together by Pope Francis, with Benedict XVI also present — two living popes and two new saints in one morning.",
+        "source": "https://www.vatican.va/special/canonizzazione-27042014/index_en.html"
       }
     ],
     "05-30": [
       {
         "year": 1431,
-        "text": "St. Joan of Arc was burned at the stake at Rouen, aged about 19. The Church that condemned her retried the case 25 years later and declared her innocent."
+        "text": "St. Joan of Arc was burned at the stake at Rouen, aged about 19. The Church that condemned her retried the case 25 years later and declared her innocent.",
+        "source": "https://www.history.com/this-day-in-history/may-30/joan-of-arc-martyred"
       }
     ],
     "06-05": [
       {
         "year": 754,
-        "text": "St. Boniface was killed in Frisia along with his companions. Accounts say he raised a book to shield himself from the sword."
+        "text": "St. Boniface was killed in Frisia along with his companions. Accounts say he raised a book to shield himself from the sword.",
+        "source": "https://www.britannica.com/biography/Saint-Boniface"
       }
     ],
     "06-22": [
       {
         "year": 1633,
-        "text": "Galileo Galilei was condemned by the Roman Inquisition and made to abjure his defence of a sun-centred cosmos. The Church formally acknowledged the errors of the case in 1992."
+        "text": "Galileo Galilei was condemned by the Roman Inquisition and made to abjure his defence of a sun-centred cosmos. The Church formally acknowledged the errors of the case in 1992.",
+        "source": "https://famous-trials.com/galileotrial/1020-recantation"
       }
     ],
     "07-06": [
       {
         "year": 1535,
-        "text": "St. Thomas More was beheaded on Tower Hill for refusing to endorse Henry VIII's claim over the Church in England. He said he died the king's good servant, but God's first."
+        "text": "St. Thomas More was beheaded on Tower Hill for refusing to endorse Henry VIII's claim over the Church in England. He said he died the king's good servant, but God's first.",
+        "source": "https://en.wikipedia.org/wiki/Thomas_More"
       }
     ],
     "07-31": [
       {
         "year": 1556,
-        "text": "St. Ignatius of Loyola died in Rome. A soldier until a cannonball shattered his leg, he spent the long convalescence reading the only books available — the life of Christ and the lives of the saints."
+        "text": "St. Ignatius of Loyola died in Rome. A soldier until a cannonball shattered his leg, he spent the long convalescence reading the only books available — the life of Christ and the lives of the saints.",
+        "source": "https://www.britannica.com/biography/St-Ignatius-of-Loyola"
       }
     ],
     "08-04": [
       {
         "year": 1859,
-        "text": "St. John Vianney died at Ars. He had struggled badly with his studies and was nearly refused ordination; he ended up spending as much as sixteen hours a day hearing confessions."
+        "text": "St. John Vianney died at Ars. He had struggled badly with his studies and was nearly refused ordination; he ended up spending as much as sixteen hours a day hearing confessions.",
+        "source": "https://www.britannica.com/biography/Saint-Jean-Baptiste-Marie-Vianney"
       }
     ],
     "08-14": [
       {
         "year": 1941,
-        "text": "St. Maximilian Kolbe died in the starvation bunker at Auschwitz. He had stepped forward to take the place of a stranger, a married man with children, who had been picked to die."
+        "text": "St. Maximilian Kolbe died in the starvation bunker at Auschwitz. He had stepped forward to take the place of a stranger, a married man with children, who had been picked to die.",
+        "source": "https://www.auschwitz.org/en/museum/news/sixty-ninth-anniversary-of-the-death-of-st-maximilian-kolbe,723.html"
       }
     ],
     "08-28": [
       {
         "year": 430,
-        "text": "St. Augustine died at Hippo while the city was under siege. His Confessions is still, sixteen centuries on, one of the most honest books ever written about wanting to be good and not managing it."
+        "text": "St. Augustine died at Hippo while the city was under siege. His Confessions is still, sixteen centuries on, one of the most honest books ever written about wanting to be good and not managing it.",
+        "source": "https://www.britannica.com/biography/Saint-Augustine"
       }
     ],
     "09-04": [
