@@ -199,53 +199,62 @@
     "11-01": [
       {
         "year": 1950,
-        "text": "Pius XII defined the Assumption of Mary as dogma in Munificentissimus Deus — the only time a pope has explicitly invoked papal infallibility since it was defined in 1870."
+        "text": "Pius XII defined the Assumption of Mary as dogma in Munificentissimus Deus — the only time a pope has explicitly invoked papal infallibility since it was defined in 1870.",
+        "source": "https://www.vatican.va/content/pius-xii/en/apost_constitutions/documents/hf_p-xii_apc_19501101_munificentissimus-deus.html"
       }
     ],
     "11-03": [
       {
         "year": 1584,
-        "text": "St. Charles Borromeo died at Milan, aged 46. He had stayed in the city through the plague of 1576 when much of the civil government left."
+        "text": "St. Charles Borromeo died at Milan, aged 46. He had stayed in the city through the plague of 1576 when much of the civil government left.",
+        "source": "https://www.britannica.com/biography/Saint-Charles-Borromeo"
       }
     ],
     "12-03": [
       {
         "year": 1552,
-        "text": "St. Francis Xavier died on Shangchuan Island, within sight of mainland China, which he had spent his last months trying to enter."
+        "text": "St. Francis Xavier died on Shangchuan Island, within sight of mainland China, which he had spent his last months trying to enter.",
+        "source": "https://en.wikipedia.org/wiki/Francis_Xavier"
       }
     ],
     "12-08": [
       {
         "year": 1854,
-        "text": "Pius IX defined the dogma of the Immaculate Conception in Ineffabilis Deus."
+        "text": "Pius IX defined the dogma of the Immaculate Conception in Ineffabilis Deus.",
+        "source": "https://www.papalencyclicals.net/pius09/p9ineff.htm"
       },
       {
         "year": 1965,
-        "text": "The Second Vatican Council formally closed, just over three years after it opened."
+        "text": "The Second Vatican Council formally closed, just over three years after it opened.",
+        "source": "https://www.britannica.com/event/Second-Vatican-Council"
       }
     ],
     "12-09": [
       {
         "year": 1531,
-        "text": "St. Juan Diego, a farmer in his fifties, met a young woman on Tepeyac hill who spoke to him in his own Nahuatl language. Within a decade millions in Mexico had been baptised."
+        "text": "According to a tradition first set down in writing in 1649, more than a century after the fact, a farmer named Juan Diego met a young woman on Tepeyac hill outside Mexico City who spoke to him in his own Nahuatl language. No document naming Juan Diego survives from before that account, and historians still debate how much of the story can be verified.",
+        "source": "https://en.wikipedia.org/wiki/Juan_Diego"
       }
     ],
     "12-13": [
       {
         "year": 1545,
-        "text": "The Council of Trent opened. It ran on and off for eighteen years and shaped Catholic life for the four centuries that followed."
+        "text": "The Council of Trent opened. It ran on and off for eighteen years and shaped Catholic life for the four centuries that followed.",
+        "source": "https://www.britannica.com/event/Council-of-Trent"
       }
     ],
     "12-25": [
       {
         "year": 800,
-        "text": "Charlemagne was crowned emperor by Pope Leo III in St. Peter's during Christmas Mass — a moment that set the terms of the relationship between Church and European rulers for centuries."
+        "text": "Charlemagne was crowned emperor by Pope Leo III in St. Peter's during Christmas Mass — a moment that set the terms of the relationship between Church and European rulers for centuries.",
+        "source": "https://en.wikipedia.org/wiki/Pope_Leo_III"
       }
     ],
     "12-29": [
       {
         "year": 1170,
-        "text": "St. Thomas Becket was killed by four knights in his own cathedral at Canterbury, after Henry II reportedly wondered aloud who would rid him of the troublesome priest."
+        "text": "St. Thomas Becket was killed by four knights in his own cathedral at Canterbury, after Henry II reportedly wondered aloud who would rid him of the troublesome priest.",
+        "source": "https://www.britannica.com/biography/Saint-Thomas-Becket"
       }
     ]
   }
