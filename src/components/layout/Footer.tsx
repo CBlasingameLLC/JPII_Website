@@ -17,7 +17,7 @@ export function Footer() {
             </p>
             <div className="mt-7">
               <div className="font-ui text-[10px] font-semibold uppercase tracking-[.2em] text-gold-light">
-                Campus colours
+                Campus colors
               </div>
               <p className="mt-[10px] max-w-[230px] text-[12.5px] leading-[1.6] text-onnavy-dim">
                 JPII is home to students from both schools. Pick whichever is yours.

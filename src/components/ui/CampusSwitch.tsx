@@ -86,7 +86,7 @@ export function CampusSwitch({ className }: { className?: string }) {
     <div
       className={cn("campus-switch", className)}
       role="group"
-      aria-label="Campus colours"
+      aria-label="Campus colors"
     >
       {CAMPUSES.map((campus) => (
         <button
@@ -94,7 +94,7 @@ export function CampusSwitch({ className }: { className?: string }) {
           type="button"
           onClick={() => selectCampus(campus.id)}
           aria-pressed={active === campus.id}
-          title={`Show ${campus.full} colours`}
+          title={`Show ${campus.full} colors`}
         >
           {campus.short}
         </button>

@@ -31,7 +31,7 @@ export function NewHere() {
           <div className="mt-6 flex max-w-[520px] flex-col gap-5 text-[17px] leading-[1.7] text-ink-warm">
             <p>
               Tell us what you&apos;re into and we hand your name to the student who actually runs
-              that thing — the one leading the Wednesday study, or organising the service days.
+              that thing — the one leading the Wednesday study, or organizing the service days.
               They&apos;re the one who texts you.
             </p>
             <p>

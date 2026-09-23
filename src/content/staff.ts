@@ -16,11 +16,9 @@ export type StaffMember = {
  * where a featured pair plus one lone card underneath is the same orphaned
  * last row already removed from the leadership section twice.
  *
- * Order is deliberate. Fr. Steven and Erin come first because they are who a
- * student actually deals with week to week; Fr. Hank follows, in the slot the
- * old Director of Operations placeholder held. His is arguably the senior role
- * of the three, so if the ministry would rather lead with him, this array is
- * the only thing that needs reordering.
+ * Order is the ministry's own call, set at their request: Fr. Hank first as
+ * Administrator, then Fr. Steven, then Erin. Reordering this array is the only
+ * change required if that ever shifts — nothing reads position except the grid.
  *
  * Bios are the ministry's own wording, taken from an existing staff page and
  * known to be somewhat dated — kept verbatim rather than rewritten, so nothing
@@ -28,6 +26,12 @@ export type StaffMember = {
  * replacing.
  */
 export const STAFF: StaffMember[] = [
+  {
+    name: "Very Rev. Hank Lanik",
+    role: "Administrator",
+    bio: "Very Rev. Hank Lanik was born in 1961 in San Antonio, Texas, and grew up in South Texas. He graduated from MacArthur High School in 1979 and attended Southwest Texas State University (now Texas State University) and studied Business Administration and Management. After University Fr. Hank worked for James Avery Craftsman, Inc. managing and opening stores throughout the state of Texas and ending up in Dallas, Texas. While there he left the business world and went to work for the Church as the Director of Youth Ministry of All Saints Catholic Church and the Associate Director of Youth Ministry of the Diocese of Dallas. During that time he became very involved in Catholic Outdoor Ministry and was part of a group of people that opened up The Pines Catholic Camp in East Texas. In 1991 Fr. Hank became the Camp Director and stayed in that ministry for the next 17 years. In 2005 Fr. Hank entered seminary studies at St. Mary's Seminary in Houston, Texas, and was ordained for the Diocese of Tyler on May 28, 2011, at the age of 50. Since ordination Fr. Hank has served in various parishes throughout the Diocese of Tyler as well as a Dean and Chancellor of the Diocese of Tyler. Currently Fr. Hank is the Rector and Pastor of the Cathedral of the Immaculate Conception, the Administrator of John Paul II Campus Ministry at the University of Texas, Tyler, and serves as Vicar for Priests for the Diocese of Tyler.",
+    photo: "/staff/hank.webp",
+  },
   {
     name: "Fr. Steven Chabarria",
     role: "Campus Priest",
@@ -40,11 +44,5 @@ export const STAFF: StaffMember[] = [
     bio: "Having graduated from Franciscan University of Steubenville with a bachelors degree in Catechesis and a focus on youth ministry, Erin is deeply rooted in her Catholic faith. As Campus Minister, Erin has developed a very relational ministry — supporting the students with continual discipleship, leadership training, and personal development. The young men and women in the Catholic Campus Ministry encounter students on campus and invite them to grow deeper in their relationship with Jesus Christ through the sacraments, community, and activities.",
     photo: "/staff/erin.webp",
     email: "campusminister@tylercatholic.org",
-  },
-  {
-    name: "Very Rev. Hank Lanik",
-    role: "Administrator",
-    bio: "Very Rev. Hank Lanik was born in 1961 in San Antonio, Texas, and grew up in South Texas. He graduated from MacArthur High School in 1979 and attended Southwest Texas State University (now Texas State University) and studied Business Administration and Management. After University Fr. Hank worked for James Avery Craftsman, Inc. managing and opening stores throughout the state of Texas and ending up in Dallas, Texas. While there he left the business world and went to work for the Church as the Director of Youth Ministry of All Saints Catholic Church and the Associate Director of Youth Ministry of the Diocese of Dallas. During that time he became very involved in Catholic Outdoor Ministry and was part of a group of people that opened up The Pines Catholic Camp in East Texas. In 1991 Fr. Hank became the Camp Director and stayed in that ministry for the next 17 years. In 2005 Fr. Hank entered seminary studies at St. Mary's Seminary in Houston, Texas, and was ordained for the Diocese of Tyler on May 28, 2011, at the age of 50. Since ordination Fr. Hank has served in various parishes throughout the Diocese of Tyler as well as a Dean and Chancellor of the Diocese of Tyler. Currently Fr. Hank is the Rector and Pastor of the Cathedral of the Immaculate Conception, the Administrator of John Paul II Campus Ministry at the University of Texas, Tyler, and serves as Vicar for Priests for the Diocese of Tyler.",
-    photo: "/staff/hank.webp",
   },
 ];
