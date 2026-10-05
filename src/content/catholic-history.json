@@ -182,6 +182,13 @@
         "source": "https://www.vaticannews.va/en/saints/10/05/st--faustina-kowalska.html"
       }
     ],
+    "10-06": [
+      {
+        "year": 1101,
+        "text": "St. Bruno of Cologne died at Serra San Bruno in Calabria, aged about 70. He had given up a prominent teaching post at Reims to live as a hermit, and the order he founded, the Carthusians, still keeps a rule of near-total silence.",
+        "source": "https://en.wikipedia.org/wiki/Bruno_of_Cologne"
+      }
+    ],
     "10-07": [
       {
         "year": 1571,
@@ -231,6 +238,13 @@
         "source": "https://en.wikipedia.org/wiki/Inauguration_of_Pope_John_Paul_II"
       }
     ],
+    "10-24": [
+      {
+        "year": 1870,
+        "text": "St. Anthony Mary Claret, founder of the Claretian missionaries and former confessor to Queen Isabella II of Spain, died at Fontfroide Abbey in France. He had followed the deposed queen into exile and spent his final months there under house arrest at the insistence of the Spanish government.",
+        "source": "https://en.wikipedia.org/wiki/Anthony_Mary_Claret"
+      }
+    ],
     "10-28": [
       {
         "year": 1965,
@@ -252,11 +266,25 @@
         "source": "https://www.britannica.com/biography/Saint-Charles-Borromeo"
       }
     ],
+    "11-09": [
+      {
+        "year": 324,
+        "text": "Pope St. Sylvester I dedicated the Lateran Basilica in Rome, the first public Christian church built in the city. It remains the cathedral of the Bishop of Rome, a rank that technically outranks St. Peter's Basilica.",
+        "source": "https://en.wikipedia.org/wiki/Dedication_of_the_Lateran_Basilica"
+      }
+    ],
     "11-10": [
       {
         "year": 461,
         "text": "Pope St. Leo the Great died in Rome after more than two decades as pope. He is best remembered for persuading Attila the Hun to turn back from invading Italy in 452, and for a theological letter, the Tome of Leo, that shaped the Council of Chalcedon's teaching on Christ's two natures.",
         "source": "https://en.wikipedia.org/wiki/Pope_Leo_I"
+      }
+    ],
+    "11-12": [
+      {
+        "year": 1623,
+        "text": "St. Josaphat Kuncevych, an Eastern Catholic archbishop working to bring Ruthenian Christians into union with Rome, was killed by an Orthodox mob in Vitebsk that opposed the union. He was struck down with an axe and his body thrown into a river; he later became the first Eastern-rite saint canonized by Rome.",
+        "source": "https://en.wikipedia.org/wiki/Josaphat_Kuntsevych"
       }
     ],
     "11-15": [
@@ -266,11 +294,39 @@
         "source": "https://en.wikipedia.org/wiki/Albertus_Magnus"
       }
     ],
+    "11-16": [
+      {
+        "year": 1989,
+        "text": "Six Jesuit priests and two women were shot dead by an army unit on the campus of the Jesuit-run University of Central America in San Salvador, during El Salvador's civil war. The priests, including the university's rector Ignacio Ellacuría, had been outspoken advocates for a negotiated end to the war.",
+        "source": "https://en.wikipedia.org/wiki/1989_murders_of_Jesuits_in_El_Salvador"
+      }
+    ],
+    "11-17": [
+      {
+        "year": 1231,
+        "text": "St. Elizabeth of Hungary died at Marburg at 24. After her husband's death four years earlier, she gave up her position as a noblewoman, built a hospital below the Wartburg castle, and spent her remaining years caring for the sick and poor.",
+        "source": "https://en.wikipedia.org/wiki/Elizabeth_of_Hungary"
+      }
+    ],
     "11-18": [
       {
         "year": 1626,
         "text": "Pope Urban VIII dedicated the newly completed St. Peter's Basilica in Rome, 120 years after construction began under Pope Julius II. The current basilica replaced a fourth-century church built over the traditional site of St. Peter's tomb.",
         "source": "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica"
+      }
+    ],
+    "11-21": [
+      {
+        "year": 1964,
+        "text": "The Second Vatican Council promulgated Lumen Gentium, its dogmatic constitution on the nature of the Church, after a vote of 2,151 to 5 among the assembled bishops.",
+        "source": "https://en.wikipedia.org/wiki/Lumen_gentium"
+      }
+    ],
+    "12-01": [
+      {
+        "year": 1916,
+        "text": "Charles de Foucauld, a French hermit who had lived for years among the Tuareg people in the Algerian Sahara, was shot dead by raiders at his hermitage in Tamanrasset. He left no followers in his own lifetime, but the religious communities inspired by his writings were founded decades after his death.",
+        "source": "https://en.wikipedia.org/wiki/Charles_de_Foucauld"
       }
     ],
     "12-03": [
