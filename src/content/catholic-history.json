@@ -252,6 +252,13 @@
         "source": "https://en.wikipedia.org/wiki/Inauguration_of_Pope_John_Paul_II"
       }
     ],
+    "10-23": [
+      {
+        "year": 1456,
+        "text": "St. John of Capistrano, a Franciscan friar who had helped recruit and lead the peasant army that broke the Ottoman siege of Belgrade, died three months later at Ilok, in present-day Croatia, worn down from tending the siege's wounded and plague-stricken survivors. He was 70.",
+        "source": "https://en.wikipedia.org/wiki/John_of_Capistrano"
+      }
+    ],
     "10-24": [
       {
         "year": 1870,
@@ -287,11 +294,25 @@
         "source": "https://www.vatican.va/content/pius-xii/en/apost_constitutions/documents/hf_p-xii_apc_19501101_munificentissimus-deus.html"
       }
     ],
+    "11-02": [
+      {
+        "year": 998,
+        "text": "Odilo, abbot of the French monastery of Cluny, decreed that all its houses keep November 2 as a day of prayer for the souls of the dead — the origin of All Souls' Day. The custom then spread through the rest of the Western Church over the next three centuries.",
+        "source": "https://www.vaticannews.va/en/liturgical-holidays/commemoration-of-all-the-faithful-departed--all-souls-day-.html"
+      }
+    ],
     "11-03": [
       {
         "year": 1584,
         "text": "St. Charles Borromeo died at Milan, aged 46. He had stayed in the city through the plague of 1576 when much of the civil government left.",
         "source": "https://www.britannica.com/biography/Saint-Charles-Borromeo"
+      }
+    ],
+    "11-07": [
+      {
+        "year": 739,
+        "text": "St. Willibrord, an Anglo-Saxon monk sent from England to evangelize the pagan Frisians of the Low Countries, died at about 81 at the monastery he had founded at Echternach, in present-day Luxembourg. He is remembered as the Apostle to the Frisians.",
+        "source": "https://en.wikipedia.org/wiki/Willibrord"
       }
     ],
     "11-08": [
@@ -322,6 +343,13 @@
         "source": "https://en.wikipedia.org/wiki/Josaphat_Kuntsevych"
       }
     ],
+    "11-13": [
+      {
+        "year": 867,
+        "text": "Pope St. Nicholas I died in Rome after nine years as pope, during which he excommunicated the archbishop of Ravenna for abusing his authority and forced the bishops who had sanctioned King Lothair II's attempted divorce to recant. Later historians nicknamed him \"the Great\" for asserting papal authority over kings and bishops alike.",
+        "source": "https://en.wikipedia.org/wiki/Pope_Nicholas_I"
+      }
+    ],
     "11-15": [
       {
         "year": 1280,
@@ -350,6 +378,13 @@
         "source": "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica"
       }
     ],
+    "11-20": [
+      {
+        "year": 869,
+        "text": "Edmund, the Anglo-Saxon king of East Anglia, was killed by the Viking army that had already conquered much of eastern England. He was venerated as a martyr soon afterward, though the detailed stories of his death — not written down until more than a century later — are considered legendary rather than documented history.",
+        "source": "https://en.wikipedia.org/wiki/Edmund_the_Martyr"
+      }
+    ],
     "11-21": [
       {
         "year": 1964,
@@ -362,6 +397,13 @@
         "year": 1830,
         "text": "Catherine Labouré, a French novice with the Daughters of Charity, reported seeing the Virgin Mary in her convent's chapel on Paris's Rue du Bac and was shown the design for what became the Miraculous Medal. It was the second of three apparitions she described that year.",
         "source": "https://en.wikipedia.org/wiki/Miraculous_Medal"
+      }
+    ],
+    "11-28": [
+      {
+        "year": 1476,
+        "text": "St. James of the Marches, a Franciscan preacher and one of the leading figures of the Observant reform movement alongside St. John of Capistrano, died in Naples in his eighties. He had also founded early nonprofit pawnshops, called montes pietatis, to lend to the poor without the high rates charged by private moneylenders.",
+        "source": "https://en.wikipedia.org/wiki/James_of_the_Marches"
       }
     ],
     "12-01": [
@@ -425,11 +467,32 @@
         "source": "https://www.nobelprize.org/prizes/peace/1979/teresa/prize-presentation/"
       }
     ],
+    "12-11": [
+      {
+        "year": 384,
+        "text": "Pope St. Damasus I died in Rome after eighteen years as pope, during which he commissioned the scholar Jerome to produce a single standardized Latin translation of the Bible — the work that became known as the Vulgate.",
+        "source": "https://en.wikipedia.org/wiki/Pope_Damasus_I"
+      }
+    ],
     "12-13": [
       {
         "year": 1545,
         "text": "The Council of Trent opened. It ran on and off for eighteen years and shaped Catholic life for the four centuries that followed.",
         "source": "https://www.britannica.com/event/Council-of-Trent"
+      }
+    ],
+    "12-14": [
+      {
+        "year": 1591,
+        "text": "St. John of the Cross, a Spanish Carmelite friar and mystical writer, died at a monastery in Úbeda at 49. Fellow Carmelites opposed to his reform efforts had imprisoned him in a cramped cell in Toledo years earlier, and he composed some of his best-known poetry there before escaping after nine months.",
+        "source": "https://en.wikipedia.org/wiki/John_of_the_Cross"
+      }
+    ],
+    "12-16": [
+      {
+        "year": 1916,
+        "text": "Bl. Honorat Koźmiński, a Polish Capuchin friar, died at Nowe Miasto at 87. After Russian authorities suppressed religious orders in Poland following the failed 1864 uprising, he responded by founding numerous religious congregations whose members took vows in secret, wearing no habit and living outside any community, to evade the ban.",
+        "source": "https://en.wikipedia.org/wiki/Honorat_Ko%C5%BAmi%C5%84ski"
       }
     ],
     "12-25": [
