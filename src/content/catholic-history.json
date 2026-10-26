@@ -308,6 +308,13 @@
         "source": "https://www.britannica.com/biography/Saint-Charles-Borromeo"
       }
     ],
+    "11-04": [
+      {
+        "year": 1958,
+        "text": "Angelo Roncalli was crowned Pope John XXIII at a ceremony in St. Peter's Basilica, a week after his October 28 election. He was carried into the basilica on the sedia gestatoria, a ceremonial portable throne, while a cardinal set the triple papal tiara on his head.",
+        "source": "https://www.vatican.va/content/john-xxiii/en/homilies/1958.index.html"
+      }
+    ],
     "11-07": [
       {
         "year": 739,
@@ -392,6 +399,13 @@
         "source": "https://en.wikipedia.org/wiki/Lumen_gentium"
       }
     ],
+    "11-23": [
+      {
+        "year": 1927,
+        "text": "Miguel Pro, a Mexican Jesuit priest, was executed by firing squad in Mexico City on fabricated charges of plotting to assassinate a former president, during the anti-Catholic Calles government's crackdown on the Church. Witnesses said he refused a blindfold and died with his arms spread out like a crucifix, shouting \"Viva Cristo Rey.\"",
+        "source": "https://en.wikipedia.org/wiki/Miguel_Pro"
+      }
+    ],
     "11-27": [
       {
         "year": 1830,
@@ -406,11 +420,25 @@
         "source": "https://en.wikipedia.org/wiki/James_of_the_Marches"
       }
     ],
+    "11-29": [
+      {
+        "year": 1964,
+        "text": "English replaced Latin for most of the Mass in Catholic parishes across the United States for the first time, on the date the U.S. bishops had set that October during a meeting in Rome. Priests also began facing the congregation for the newly English parts of the liturgy that same Sunday.",
+        "source": "https://www.newoxfordreview.org/mass-in-english-spread-like-wildfire"
+      }
+    ],
     "12-01": [
       {
         "year": 1916,
         "text": "Charles de Foucauld, a French hermit who had lived for years among the Tuareg people in the Algerian Sahara, was shot dead by raiders at his hermitage in Tamanrasset. He left no followers in his own lifetime, but the religious communities inspired by his writings were founded decades after his death.",
         "source": "https://en.wikipedia.org/wiki/Charles_de_Foucauld"
+      }
+    ],
+    "12-02": [
+      {
+        "year": 1980,
+        "text": "Four American churchwomen working with the poor in El Salvador — Maryknoll Sisters Maura Clarke and Ita Ford, Ursuline Sister Dorothy Kazel, and lay missionary Jean Donovan — were abducted, raped, and shot by members of the Salvadoran National Guard. Their bodies were found in a shallow grave two days later.",
+        "source": "https://origins.osu.edu/milestones/murdered-churchwomen-el-salvador"
       }
     ],
     "12-03": [
@@ -493,6 +521,34 @@
         "year": 1916,
         "text": "Bl. Honorat Koźmiński, a Polish Capuchin friar, died at Nowe Miasto at 87. After Russian authorities suppressed religious orders in Poland following the failed 1864 uprising, he responded by founding numerous religious congregations whose members took vows in secret, wearing no habit and living outside any community, to evade the ban.",
         "source": "https://en.wikipedia.org/wiki/Honorat_Ko%C5%BAmi%C5%84ski"
+      }
+    ],
+    "12-17": [
+      {
+        "year": 1936,
+        "text": "Jorge Mario Bergoglio, the future Pope Francis, was born in Buenos Aires to a family of Italian immigrants. His father worked as an accountant for the Argentine railways.",
+        "source": "https://www.vatican.va/content/francesco/en/biography/documents/papa-francesco-biografia-bergoglio.html"
+      }
+    ],
+    "12-22": [
+      {
+        "year": 1917,
+        "text": "St. Frances Xavier Cabrini, an Italian-born nun who founded the Missionary Sisters of the Sacred Heart of Jesus and built schools, orphanages, and hospitals across the Americas, died in Chicago at 67. She became the first United States citizen to be canonized by the Catholic Church.",
+        "source": "https://www.vaticannews.va/en/saints/12/22/st--francesca-saverio-cabrini--virgin--foundress-of-the--mission.html"
+      }
+    ],
+    "12-23": [
+      {
+        "year": 1193,
+        "text": "St. Thorlak Thorhallsson, bishop of Skálholt in Iceland for fifteen years, died at his see. Pope John Paul II canonized him in 1984 and named him patron saint of Iceland.",
+        "source": "https://en.wikipedia.org/wiki/Saint_Thorlak"
+      }
+    ],
+    "12-24": [
+      {
+        "year": 1944,
+        "text": "Pope Pius XII delivered his annual Christmas radio address over Vatican Radio partway through World War II, calling for democratic government and a lasting peace once the fighting ended.",
+        "source": "https://www.vatican.va/content/pius-xii/en/speeches/1944/documents/hf_p-xii_spe_19441224_natale.html"
       }
     ],
     "12-25": [
