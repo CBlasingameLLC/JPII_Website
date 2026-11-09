@@ -9,11 +9,39 @@
     "individually source-checked; the agent adds a `source` as it verifies them."
   ],
   "entries": {
+    "01-01": [
+      {
+        "year": 1968,
+        "text": "Paul VI marked the first World Day of Peace, an observance he had created for January 1 each year, by celebrating Mass with sick children at Rome's Bambino Gesù hospital.",
+        "source": "https://www.vaticannews.va/en/pope/news/2021-01/paul-vi-first-world-day-peace-1968-bambino-gesu-hospital.html"
+      }
+    ],
+    "01-02": [
+      {
+        "year": 533,
+        "text": "A Roman priest named Mercurius was elected pope and took the name John II, the first pope on record to adopt a new name, since he considered it unfitting to keep the name of a pagan god.",
+        "source": "https://en.wikipedia.org/wiki/Pope_John_II"
+      }
+    ],
     "01-04": [
       {
         "year": 1821,
         "text": "St. Elizabeth Ann Seton died at Emmitsburg, Maryland. A widow with five children who converted at 30, she went on to found the first Catholic girls' school in the United States, and became the first native-born American citizen to be canonized.",
         "source": "https://www.britannica.com/biography/Saint-Elizabeth-Ann-Seton"
+      }
+    ],
+    "01-05": [
+      {
+        "year": 1964,
+        "text": "Pope Paul VI met Ecumenical Patriarch Athenagoras I on the Mount of Olives in Jerusalem, the first meeting between a pope and the patriarch of Constantinople after centuries of estrangement between Rome and the Eastern Orthodox churches.",
+        "source": "https://www.vaticannews.va/en/vatican-city/news/2024-01/pope-paul-vi-athenagoras-sixtieth-anniversary-jerusalem-meeting.html"
+      }
+    ],
+    "01-08": [
+      {
+        "year": 1198,
+        "text": "Cardinals elected Lothair of Segni pope the same day his predecessor, Celestine III, died. He took the name Innocent III and went on to convene the Fourth Lateran Council.",
+        "source": "https://www.britannica.com/biography/Innocent-III-pope"
       }
     ],
     "01-25": [
@@ -572,6 +600,13 @@
         "source": "https://en.wikipedia.org/wiki/John_of_the_Cross"
       }
     ],
+    "12-15": [
+      {
+        "year": 687,
+        "text": "Sergius I was consecrated bishop of Rome, ending a three-way succession dispute. One defeated claimant, the archdeacon Paschal, had tried to buy the papacy in advance by bribing the Byzantine exarch of Ravenna, then tried to collect on the bribe even after Sergius had already won.",
+        "source": "https://en.wikipedia.org/wiki/Pope_Sergius_I"
+      }
+    ],
     "12-16": [
       {
         "year": 1916,
@@ -584,6 +619,20 @@
         "year": 1936,
         "text": "Jorge Mario Bergoglio, the future Pope Francis, was born in Buenos Aires to a family of Italian immigrants. His father worked as an accountant for the Argentine railways.",
         "source": "https://www.vatican.va/content/francesco/en/biography/documents/papa-francesco-biografia-bergoglio.html"
+      }
+    ],
+    "12-18": [
+      {
+        "year": 1979,
+        "text": "The Vatican's Congregation for the Doctrine of the Faith withdrew Hans Küng's authorization to teach as a Catholic theologian, citing his rejection of papal infallibility and other doctrinal disputes. He kept his chair at the University of Tübingen, teaching afterward as a professor of ecumenical theology rather than Catholic theology.",
+        "source": "https://en.wikipedia.org/wiki/Hans_K%C3%BCng"
+      }
+    ],
+    "12-19": [
+      {
+        "year": 1187,
+        "text": "Cardinal Paolo Scolari was elected pope two days after Gregory VIII's death and took the name Clement III. With Jerusalem having fallen to Saladin two months earlier, he spent much of his short pontificate trying to launch what became the Third Crusade.",
+        "source": "https://w2.vatican.va/content/vatican/en/holy-father/clemente-iii.html"
       }
     ],
     "12-22": [
@@ -614,11 +663,25 @@
         "source": "https://en.wikipedia.org/wiki/Pope_Leo_III"
       }
     ],
+    "12-26": [
+      {
+        "year": 1948,
+        "text": "Hungary's communist government arrested Cardinal József Mindszenty at Esztergom over his refusal to let the state take over Catholic schools. He was beaten into a forced confession and sentenced to life imprisonment the following February.",
+        "source": "https://en.wikipedia.org/wiki/J%C3%B3zsef_Mindszenty"
+      }
+    ],
     "12-29": [
       {
         "year": 1170,
         "text": "St. Thomas Becket was killed by four knights in his own cathedral at Canterbury, after Henry II reportedly wondered aloud who would rid him of the troublesome priest.",
         "source": "https://www.britannica.com/biography/Saint-Thomas-Becket"
+      }
+    ],
+    "12-30": [
+      {
+        "year": 1993,
+        "text": "The Holy See and the State of Israel signed the Fundamental Agreement in Jerusalem, laying the framework for full diplomatic relations, which both sides established three weeks later on January 19, 1994.",
+        "source": "https://en.wikipedia.org/wiki/Fundamental_Agreement_between_the_Holy_See_and_the_State_of_Israel"
       }
     ]
   }
